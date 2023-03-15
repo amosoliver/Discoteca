@@ -18,15 +18,10 @@ class Artista extends Model
         'ds_artista'
     ];
 
-    public function discos($id_artista)
-    {
-
-    }
     public function disco()
     {
         return $this->hasMany(Disco::class, 'id_artista');
     }
-
 
 }
 
