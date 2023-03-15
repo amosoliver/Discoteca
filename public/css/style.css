@@ -1,0 +1,34 @@
+/* Define um estilo personalizado para o fundo do formulário */
+.gradient-custom {
+    background: linear-gradient(to bottom right, #1e3c72, #2a5298); /* define o degrade de azul escuro */
+    color: #fff; /* define todas as palavras em branco */
+    padding: 20px; /* adiciona espaço interno ao elemento */
+}
+
+/* Estilo para os campos do formulário */
+.form-group label {
+    font-weight: bold; /* define o texto do rótulo em negrito */
+}
+
+.form-group select,
+.form-group input[type=text] {
+    background-color: transparent; /* define o fundo transparente */
+    border: none; /* remove a borda */
+    border-bottom: 1px solid #fff; /* adiciona uma borda inferior branca */
+    color: #fff; /* define o texto em branco */
+    padding: 10px; /* adiciona espaço interno ao elemento */
+}
+
+/* Estilo para o botão de envio */
+.btn-submit {
+    background-color: #fff; /* define o fundo branco */
+    color: #1e3c72; /* define o texto em azul escuro */
+    border: none; /* remove a borda */
+    padding: 10px 20px; /* adiciona espaço interno ao elemento */
+    margin-top: 20px; /* adiciona espaço externo acima do botão */
+}
+
+.btn-submit:hover {
+    background-color: #1e3c72; /* define o fundo em azul escuro no hover */
+    color: #fff; /* define o texto em branco no hover */
+}
