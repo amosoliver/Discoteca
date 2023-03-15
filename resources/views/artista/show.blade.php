@@ -31,11 +31,6 @@
                         <td>
                             {{$artista->historia}}
                         </td>
-                        <th>
-                            <a href="{{route('disco.create'),['id_artista' => $art->id_artista]}}">
-                                Adicionar
-                            </a>
-                        </th>
                     </tr>
                     </tbody>
                 </table>
@@ -48,6 +43,13 @@
             <div class="table-responsive">
                 <table class="datatable table table-bordered table-striped">
                     <thead>
+                    <tr>
+                        <td>
+                            <button type="button" onclick="window.location='{{ route('disco.create',$artista->id_artista)}}'">
+                                Adicionar
+                            </button>
+                        </td>
+                    </tr>
                         <tr>
                             <th width="100">
                                 <h3 class="text-center">Discografia</h3>
