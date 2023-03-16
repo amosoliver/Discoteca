@@ -18,13 +18,21 @@ class Artista extends Model
         'ds_artista'
     ];
 
-    public function discos($id_artista)
-    {
-
-    }
     public function disco()
     {
         return $this->hasMany(Disco::class, 'id_artista');
+    }
+
+    public function selectList()
+    {
+        $artistas = $this->orderBy('ds_artista')
+            ->get();
+
+        $arr = [];
+        foreach ($artistas as $art) {
+            $arr[$art->id_artista] = $art->ds_artista;
+        }
+        return $arr;
     }
 
 

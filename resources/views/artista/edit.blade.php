@@ -32,7 +32,6 @@
             <br>
             <div class="box-footer">
             <button type="submit" class="btn btn-primary btn-submit">SALVAR ALTERAÇÕES</button>
-
                 {{Form::close()}}
             </div>
         </div>
