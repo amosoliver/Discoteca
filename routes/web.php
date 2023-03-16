@@ -23,7 +23,7 @@ Route::get('disco/{id_disco}/show' , [\App\Http\Controllers\DiscoController::cla
     ->name('disco.show');
 Route::get('disco/{id_artista}/create' , [\App\Http\Controllers\DiscoController::class, 'create'])
     ->name('disco.create');
-Route::post('disco/store' , [\App\Http\Controllers\DiscoController::class, 'store'])
+Route::patch('disco/store' , [\App\Http\Controllers\DiscoController::class, 'store'])
     ->name('disco.store');
 Route::get('artista' , [\App\Http\Controllers\ArtistaController::class, 'index'])
     ->name('artista.index');

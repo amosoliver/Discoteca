@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Artista;
 use App\Models\Disco;
 use App\Models\Genero;
+use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 
 class DiscoController extends Controller
@@ -30,7 +31,18 @@ class DiscoController extends Controller
     public function create($id_artista) {
         $v['title'] = 'Cadastrar disco';
         $v['generos'] = $this->genero->selectList();
-        $v['artista'] = $this->artista->selectList()->find($id_artista);
+        $v['artistas'] = $this->artista->selectList();
+        dump($v);
         return response()->view('disco.create',$v);
+    }
+    public function store( Request $req) {
+
+        $disco = $this->disco->newInstance();
+        $disco->ds_disco = $req->input('ds_disco');
+        $disco->ano = $req->input('ano');
+        $disco->id_artista = $req->input('id_artista');
+        $disco->id_genero = $req->input('id_genero');
+        $disco->save();
+        return redirect()->route('artista.index');
     }
 }

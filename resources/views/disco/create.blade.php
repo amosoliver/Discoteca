@@ -26,22 +26,32 @@
                 {!! $errors->first('ano')!!}
             </div>
         </div>
-        {!! Form::model($artista, ['method' => 'PATCH', 'route' => ['artista.update', request('id_artista')]]) !!}
+            {!! Form::model($artistas, ['method' => 'PATCH', 'route' => ['disco.create', request('id_artista')]]) !!}
         <div class="form-group">
             {{ Form::label('id_genero', 'Genero', ['class' => 'control-label col-md-3 col-lg-2']) }}
             <div class="col-md-7 col-lg-7">
                 {{ Form::select('id_genero',$generos)}}
                 {!! $errors->first('id_genero')!!}
             </div>
+            {{ Form::close() }}
         </div>
-    </div>
-
-        <div class="box-footer">
-            <br>
-            <button type="submit" class="btn btn-primary btn-submit ">Cadastrar</button>
+        <div class="form-group">
+            {{ Form::label('id_artista', 'Artista', ['class' => 'control-label col-md-3 col-lg-2']) }}
+            <div class="col-md-7 col-lg-7">
+                {{ Form::select('id_artista',$artistas)}}
+                {!! $errors->first('id_artista')!!}
+            </div>
         </div>
         {{ Form::close() }}
+
     </div>
+
+    <div class="box-footer">
+        <br>
+        <button type="submit" class="btn btn-primary btn-submit ">Cadastrar</button>
+    </div>
+    {{ Form::close() }}
+</div>
 
 
 
