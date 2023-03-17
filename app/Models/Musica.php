@@ -20,6 +20,4 @@ class Musica extends Model
     {
         return $this->belongsTo(Disco::class, 'id_musica', 'id_musica');
     }
-
 }
-

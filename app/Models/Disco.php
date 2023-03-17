@@ -28,6 +28,4 @@ class Disco extends Model
     {
         return $this->hasMany(Musica::class, 'id_disco');
     }
-
 }
-
