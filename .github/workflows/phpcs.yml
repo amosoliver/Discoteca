@@ -18,7 +18,7 @@ jobs:
           php-version: '8.0'
           extensions: mbstring, pdo_mysql
       - name: Install PHPCS
-        run: composer install --no-interaction --prefer-dist
+        run: composer require squizlabs/php_codesniffer
       - name: Run PHPCS
         run: vendor/bin/phpcs --standard=PSR12 app
       - name: Check PHPCS
