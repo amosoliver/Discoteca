@@ -1,0 +1,16 @@
+name: PHP Code Sniffer
+
+on: [push, pull_request]
+
+jobs:
+  phpcs:
+    runs-on: ubuntu-latest
+steps:
+  - name: Checkout code
+    uses: actions/checkout@v2
+  - name: Install dependencies
+    run: composer install
+  - name: Run PHPCS
+    run: vendor/bin/phpcs
+  - name: Run PHPCS
+    run: vendor/bin/phpcs --standard=psr12
