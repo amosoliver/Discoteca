@@ -15,7 +15,7 @@ class Genero extends Model
     protected $fillable = [
        'id_genero',
        'ds_genero'
-   ];
+    ];
     public function selectList()
     {
         $generos = $this->orderBy('ds_genero')
@@ -27,6 +27,4 @@ class Genero extends Model
         }
         return $arr;
     }
-
 }
-
