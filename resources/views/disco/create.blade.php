@@ -26,23 +26,27 @@
                 {!! $errors->first('ano')!!}
             </div>
         </div>
-            {!! Form::model($artistas, ['method' => 'PATCH', 'route' => ['disco.create', request('id_artista')]]) !!}
         <div class="form-group">
-            {{ Form::label('id_genero', 'Genero', ['class' => 'control-label col-md-3 col-lg-2']) }}
+            {!! Form::model($artista, ['method' => 'POST', 'route' => 'disco.store']) !!}
+            {{ Form::label('ds_artista', 'Artista') }}
             <div class="col-md-7 col-lg-7">
-                {{ Form::select('id_genero',$generos)}}
-                {!! $errors->first('id_genero')!!}
-            </div>
-            {{ Form::close() }}
-        </div>
-        <div class="form-group">
-            {{ Form::label('id_artista', 'Artista', ['class' => 'control-label col-md-3 col-lg-2']) }}
-            <div class="col-md-7 col-lg-7">
-                {{ Form::select('id_artista',$artistas)}}
-                {!! $errors->first('id_artista')!!}
+                {{ Form::select('ds_artista', $artista, ['autofocus']) }}
             </div>
         </div>
-        {{ Form::close() }}
+        <div class="form-group">
+            {!! Form::model($genero, ['method' => 'POST', 'route' => 'disco.store']) !!}
+            {{ Form::label('ds_genero', 'Genero') }}
+            <div class="col-md-7 col-lg-7">
+                {{ Form::select('ds_artista', $genero, ['autofocus']) }}
+            </div>
+        </div>
+
+        {{!!Form::close!!}}
+
+        {!! Form::hidden('id_artista', intval(request('id_artista'))) !!}
+        {!! Form::hidden('id_genero', intval(request('id_genero'))) !!}
+
+
 
     </div>
 

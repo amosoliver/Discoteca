@@ -29,23 +29,25 @@ class DiscoController extends Controller
         $v['i'] = 1;
         return response()->view('disco.show', $v);
     }
-    public function create($id_artista)
+    public function create($id_artista,$id_genero)
     {
+        $id_artista = request('id_artista');
         $v['title'] = 'Cadastrar disco';
-        $v['generos'] = $this->genero->selectList();
-        $v['artistas'] = $this->artista->selectList();
-        dump($v);
+        $v['genero'] = $this->genero->selectListId($id_genero);
+        $v['artista'] = $this->artista->selectList($id_artista);
+
         return response()->view('disco.create', $v);
     }
     public function store(Request $req)
     {
-
+        $artista = \request('id_artista');
+        $genero = \request('id_genero');
         $disco = $this->disco->newInstance();
         $disco->ds_disco = $req->input('ds_disco');
         $disco->ano = $req->input('ano');
         $disco->id_artista = $req->input('id_artista');
-        $disco->id_genero = $req->input('id_genero');
+        $disco->id_genero = $req->input('id_genero') ;
         $disco->save();
-        return redirect()->route('artista.index');
+        return redirect()->route('artista.show', \request('id_artista'));
     }
 }

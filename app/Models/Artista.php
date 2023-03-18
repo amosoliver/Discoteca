@@ -23,9 +23,10 @@ class Artista extends Model
         return $this->hasMany(Disco::class, 'id_artista');
     }
 
-    public function selectList()
+    public function selectList($id_artista)
     {
         $artistas = $this->orderBy('ds_artista')
+            ->where('id_artista',$id_artista)
             ->get();
 
         $arr = [];
@@ -33,5 +34,6 @@ class Artista extends Model
             $arr[$art->id_artista] = $art->ds_artista;
         }
         return $arr;
+
     }
 }

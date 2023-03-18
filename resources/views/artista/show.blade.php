@@ -45,7 +45,8 @@
                     <thead>
                     <tr>
                         <td>
-                            <button type="button" onclick="window.location='{{ route('disco.create',$artista->id_artista)}}'">
+                            <button type="button" onclick="window.location='{{ route('disco.create',
+                            ['id_artista' => $artista->id_artista,'id_genero' => $artista->id_genero ])}}'">
                                 Adicionar
                             </button>
                         </td>
