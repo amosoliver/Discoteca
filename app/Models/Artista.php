@@ -26,7 +26,7 @@ class Artista extends Model
     public function selectList($id_artista)
     {
         $artistas = $this->orderBy('ds_artista')
-            ->where('id_artista',$id_artista)
+            ->where('id_artista', $id_artista)
             ->get();
 
         $arr = [];
@@ -34,6 +34,5 @@ class Artista extends Model
             $arr[$art->id_artista] = $art->ds_artista;
         }
         return $arr;
-
     }
 }

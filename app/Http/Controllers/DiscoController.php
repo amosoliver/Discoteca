@@ -29,7 +29,7 @@ class DiscoController extends Controller
         $v['i'] = 1;
         return response()->view('disco.show', $v);
     }
-    public function create($id_artista,$id_genero)
+    public function create($id_artista, $id_genero)
     {
         $id_artista = request('id_artista');
         $v['title'] = 'Cadastrar disco';

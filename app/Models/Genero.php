@@ -30,7 +30,7 @@ class Genero extends Model
     public function selectListId($id_genero)
     {
         $generos = $this->orderBy('ds_genero')
-            ->where('id_genero',$id_genero)
+            ->where('id_genero', $id_genero)
             ->get();
 
         $arr = [];
