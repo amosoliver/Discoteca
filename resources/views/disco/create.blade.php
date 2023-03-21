@@ -31,6 +31,7 @@
             {{ Form::label('ds_artista', 'Artista') }}
             <div class="col-md-7 col-lg-7">
                 {{ Form::select('ds_artista', $artista, ['autofocus']) }}
+                {!! Form::hidden('id_artista', intval(request('id_artista'))) !!}
             </div>
         </div>
         <div class="form-group">
@@ -38,23 +39,21 @@
             {{ Form::label('ds_genero', 'Genero') }}
             <div class="col-md-7 col-lg-7">
                 {{ Form::select('ds_artista', $genero, ['autofocus']) }}
+                {!! Form::hidden('id_genero', intval(request('id_genero'))) !!}
             </div>
         </div>
 
-        {{!!Form::close!!}}
-
-        {!! Form::hidden('id_artista', intval(request('id_artista'))) !!}
-        {!! Form::hidden('id_genero', intval(request('id_genero'))) !!}
+        {{!!Form::close()!!}}
 
 
 
-    </div>
 
     <div class="box-footer">
         <br>
         <button type="submit" class="btn btn-primary btn-submit ">Cadastrar</button>
     </div>
     {{ Form::close() }}
+    </div>
 </div>
 
 
