@@ -22,6 +22,8 @@
                     {{ Form::text('ano',$disco->ano , ['autofocus']) }}
                 </div>
             </div>
+           {{Form::hidden('id_artista',request('id_artista'))}}
+           {{Form::hidden('id_genero',request('id_genero'))}}
             <br>
             <div class="box-footer">
             <button type="submit" class="btn btn-primary btn-submit">SALVAR ALTERAÇÕES</button>

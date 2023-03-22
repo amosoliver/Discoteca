@@ -27,7 +27,7 @@ Route::post('disco/store' , [\App\Http\Controllers\DiscoController::class, 'stor
     ->name('disco.store');
 Route::get('disco/{id_disco}/{id_artista}/{id_genero}/edit' , [\App\Http\Controllers\DiscoController::class, 'edit'])
     ->name('disco.edit');
-Route::patch('disco/{id_disco}/update' , [\App\Http\Controllers\ArtistaController::class, 'update'])
+Route::patch('disco/{id_disco}/update' , [\App\Http\Controllers\DiscoController::class, 'update'])
     ->name('disco.update');
 Route::get('artista' , [\App\Http\Controllers\ArtistaController::class, 'index'])
     ->name('artista.index');
