@@ -77,6 +77,12 @@
                             <td>
                                 {{$disco->ano}}
                             </td>
+                            <td>
+                                <button type="button" onclick="window.location='{{
+                                route('disco.edit',['id_disco' => $disco->id_disco,
+                                'id_artista' => $disco->id_artista,
+                                'id_genero' => $disco->id_genero])}}'">EDITAR</button>
+                            </td>
                         @empty
                             <td>Não há registros para exibir</td>
                     </tr>

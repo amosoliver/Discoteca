@@ -24,10 +24,7 @@
                             Ano
                         </th>
                         <th>
-                            Quantidade
-                        </th>
-                        <th>
-                            Preço
+                            Artista
                         </th>
                     </tr>
                     </thead>
@@ -35,7 +32,7 @@
                     @foreach($disco as $disc)
                         <tr>
                             <td>
-                                {{$disc->id_disco}}
+                                {{$loop->iteration}}
                             </td>
                             <td>
                                 {{$disc->ds_disco}}
@@ -44,10 +41,7 @@
                                 {{$disc->ano}}
                             </td>
                             <td>
-                                {{$disc->quantidade}}
-                            </td>
-                            <td>
-                                {{$disc->preco}}
+                                {{$disc->artista->ds_artista}}
                             </td>
                         </tr>
                     @endforeach

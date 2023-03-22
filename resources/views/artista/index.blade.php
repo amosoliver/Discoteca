@@ -29,7 +29,7 @@
                     @foreach($artista as $art)
                         <tr>
                             <td>
-                                {{$art->id_artista}}
+                                {{$loop->iteration}}
                             </td>
                             <td width="300">
                                 <div class="botton">

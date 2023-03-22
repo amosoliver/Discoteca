@@ -25,6 +25,10 @@ Route::get('disco/{id_artista}/{id_genero}/create' , [\App\Http\Controllers\Disc
     ->name('disco.create');
 Route::post('disco/store' , [\App\Http\Controllers\DiscoController::class, 'store'])
     ->name('disco.store');
+Route::get('disco/{id_disco}/{id_artista}/{id_genero}/edit' , [\App\Http\Controllers\DiscoController::class, 'edit'])
+    ->name('disco.edit');
+Route::patch('disco/{id_disco}/update' , [\App\Http\Controllers\ArtistaController::class, 'update'])
+    ->name('disco.update');
 Route::get('artista' , [\App\Http\Controllers\ArtistaController::class, 'index'])
     ->name('artista.index');
 Route::get('artista/create' , [\App\Http\Controllers\ArtistaController::class, 'create'])

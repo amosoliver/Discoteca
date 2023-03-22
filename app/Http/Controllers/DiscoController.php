@@ -50,4 +50,19 @@ class DiscoController extends Controller
         $disco->save();
         return redirect()->route('artista.show', \request('id_artista'));
     }
+    public function edit($id_disco)
+    {
+        $v['title'] = 'Editar disco';
+        $v['disco'] = $this->disco->find($id_disco);
+        return response()->view('disco.edit', $v);
+    }
+    public function update(Request $req, $id_artista)
+    {
+        $artista = $this->artista->find($id_artista);
+        $artista->ds_artista = $req->input('ds_artista');
+        $artista->id_genero = $req->input('id_genero');
+        $artista->historia = $req->input('historia');
+        $artista->save();
+        return redirect()->route('artista.index');
+    }
 }
