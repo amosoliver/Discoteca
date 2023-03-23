@@ -21,10 +21,14 @@ Route::get('disco' , [\App\Http\Controllers\DiscoController::class, 'index'])
     ->name('disco.index');
 Route::get('disco/{id_disco}/show' , [\App\Http\Controllers\DiscoController::class, 'show'])
     ->name('disco.show');
-Route::get('disco/{id_artista}/create' , [\App\Http\Controllers\DiscoController::class, 'create'])
+Route::get('disco/{id_artista}/{id_genero}/create' , [\App\Http\Controllers\DiscoController::class, 'create'])
     ->name('disco.create');
-Route::patch('disco/store' , [\App\Http\Controllers\DiscoController::class, 'store'])
+Route::post('disco/store' , [\App\Http\Controllers\DiscoController::class, 'store'])
     ->name('disco.store');
+Route::get('disco/{id_disco}/{id_artista}/{id_genero}/edit' , [\App\Http\Controllers\DiscoController::class, 'edit'])
+    ->name('disco.edit');
+Route::patch('disco/{id_disco}/update' , [\App\Http\Controllers\DiscoController::class, 'update'])
+    ->name('disco.update');
 Route::get('artista' , [\App\Http\Controllers\ArtistaController::class, 'index'])
     ->name('artista.index');
 Route::get('artista/create' , [\App\Http\Controllers\ArtistaController::class, 'create'])
