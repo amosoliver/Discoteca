@@ -9,8 +9,6 @@ class Musica extends Model
 {
     protected $primaryKey = 'id_musica';
 
-    use HasFactory;
-
     protected $fillable = [
         'id_musica',
         'ds_musica'

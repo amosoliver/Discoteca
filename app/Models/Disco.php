@@ -9,8 +9,6 @@ class Disco extends Model
 {
     protected $primaryKey = 'id_disco';
 
-    use HasFactory;
-
     protected $fillable = [
         'id_disco',
         'ds_disco',
