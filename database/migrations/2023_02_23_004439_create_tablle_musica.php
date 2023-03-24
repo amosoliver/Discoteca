@@ -19,6 +19,8 @@ return new class extends Migration
             $table->string('ds_musica');
             $table->unsignedBigInteger('id_disco');
             $table->foreign('id_disco')->references('id_disco')->on('discos');
+            $table->timestamps();
+
         });
     }
 

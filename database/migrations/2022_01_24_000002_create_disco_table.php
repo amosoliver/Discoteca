@@ -23,6 +23,8 @@ return new class extends Migration
             $table->foreign('id_artista')->references('id_artista')->on('artistas');
             $table->unsignedBigInteger('id_genero');
             $table->foreign('id_genero')->references('id_genero')->on('generos');
+            $table->timestamps();
+
         });
     }
 

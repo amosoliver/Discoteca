@@ -16,6 +16,8 @@ return new class extends Migration
         Schema::create('generos', function (Blueprint $table) {
             $table->bigIncrements('id_genero');
             $table->string('ds_genero');
+            $table->timestamps();
+
         });
     }
 

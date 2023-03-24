@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('historia',1000);
             $table->unsignedBigInteger('id_genero');
             $table->foreign('id_genero')->references('id_genero')->on('generos');
-
+            $table->timestamps();
         });
     }
 
