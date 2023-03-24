@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
 Route::get('disco' , [\App\Http\Controllers\DiscoController::class, 'index'])
     ->name('disco.index');
 Route::get('disco/{id_disco}/show' , [\App\Http\Controllers\DiscoController::class, 'show'])
@@ -29,6 +30,7 @@ Route::get('disco/{id_disco}/{id_artista}/{id_genero}/edit' , [\App\Http\Control
     ->name('disco.edit');
 Route::patch('disco/{id_disco}/update' , [\App\Http\Controllers\DiscoController::class, 'update'])
     ->name('disco.update');
+
 Route::get('artista' , [\App\Http\Controllers\ArtistaController::class, 'index'])
     ->name('artista.index');
 Route::get('artista/create' , [\App\Http\Controllers\ArtistaController::class, 'create'])
@@ -41,5 +43,8 @@ Route::patch('artista/{id_artista}/update' , [\App\Http\Controllers\ArtistaContr
     ->name('artista.update');
 Route::get('artista/{id_artista}/show' , [\App\Http\Controllers\ArtistaController::class, 'show'])
     ->name('artista.show');
+
 Route::get('genero' , [\App\Http\Controllers\GeneroController::class, 'index'])
     ->name('genero.index');
+Route::get('genero/{id_genero}/show' , [\App\Http\Controllers\GeneroController::class, 'show'])
+    ->name('genero.show');
