@@ -17,13 +17,12 @@ return new class extends Migration
             $table->bigIncrements('id_genero');
             $table->string('ds_genero');
             $table->timestamps();
-
         });
     }
 
     /**
      * Reverse the migrations.
-     *
+
      * @return void
      */
     public function down()
