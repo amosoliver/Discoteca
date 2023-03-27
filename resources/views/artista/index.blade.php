@@ -23,6 +23,11 @@
                         <th width="300">
                             História
                         </th>
+                        <th>
+                            <button type="button" onclick="window.location='{{ route('artista.create') }}'">
+                                ADICIONAR
+                            </button>
+                        </th>
                     </tr>
                     </thead>
                     <tbody>
