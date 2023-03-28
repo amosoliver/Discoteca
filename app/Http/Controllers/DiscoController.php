@@ -11,11 +11,10 @@ use Illuminate\Routing\Controller;
 class DiscoController extends Controller
 {
     public function __construct(
-        private Disco   $disco,
-        private Genero  $genero,
+        private Disco $disco,
+        private Genero $genero,
         private Artista $artista
-    )
-    {
+    ) {
     }
 
     public function index()
