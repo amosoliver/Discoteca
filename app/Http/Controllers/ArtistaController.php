@@ -34,13 +34,22 @@ class ArtistaController extends Controller
     }
     public function store(Request $req)
     {
-        $artista = $this->artista->newInstance();
-        $artista->ds_artista = $req->input('ds_artista');
-        $artista->id_genero = $req->input('id_genero');
-        $artista->historia = $req->input('historia');
-        $artista->save();
-        return redirect()->route('artista.index');
+        try {
+            $artista = $this->artista->newInstance();
+            $artista->ds_artista = $req->input('ds_artista');
+            $artista->id_genero = $req->input('id_genero');
+            $artista->historia = $req->input('historia');
+
+            if ($artista->save()) {
+                return redirect()->route('artista.index')->with('success', 'Artista registrado com sucesso!')->delay(5);
+            }
+        } catch (\Exception $ex) {
+            return redirect()->back()->with('error', 'Ocorreu um erro ao registrar o artista: '.$ex->getMessage())->delay(15);
+        }
+
+        return redirect()->back()->with('error', 'Ocorreu um erro ao registrar o artista.')->delay(15);
     }
+
     public function edit($id_artista)
     {
         $v['title'] = 'Editar artista';
