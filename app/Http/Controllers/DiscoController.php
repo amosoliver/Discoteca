@@ -11,17 +11,20 @@ use Illuminate\Routing\Controller;
 class DiscoController extends Controller
 {
     public function __construct(
-        private Disco $disco,
-        private Genero $genero,
+        private Disco   $disco,
+        private Genero  $genero,
         private Artista $artista
-    ) {
+    )
+    {
     }
+
     public function index()
     {
         $v ['title'] = 'Disco';
         $v ['disco'] = $this->disco->all();
         return response()->view('disco.index', $v);
     }
+
     public function show($id_disco)
     {
         $id_disco = request('id_disco');
@@ -29,6 +32,7 @@ class DiscoController extends Controller
         $v['i'] = 1;
         return response()->view('disco.show', $v);
     }
+
     public function create($id_artista, $id_genero)
     {
         $id_artista = request('id_artista');
@@ -38,32 +42,47 @@ class DiscoController extends Controller
 
         return response()->view('disco.create', $v);
     }
+
     public function store(Request $req)
     {
-        $artista = \request('id_artista');
-        $genero = \request('id_genero');
-        $disco = $this->disco->newInstance();
-        $disco->ds_disco = $req->input('ds_disco');
-        $disco->ano = $req->input('ano');
-        $disco->id_artista = $req->input('id_artista');
-        $disco->id_genero = $req->input('id_genero') ;
-        $disco->save();
-        return redirect()->route('artista.show', \request('id_artista'));
+        try {
+            $disco = $this->disco->newInstance();
+            $disco->ds_disco = $req->input('ds_disco');
+            $disco->ano = $req->input('ano');
+            $disco->id_artista = $req->input('id_artista');
+            $disco->id_genero = $req->input('id_genero');
+            if ($disco->save()) {
+                return redirect()->route('artista.show', \request('id_artista'))
+                    ->with('success', 'Disco registrado com sucesso!');
+            }
+        } catch (\Exception $ex) {
+            return redirect()->back()->with('error', 'Ocorreu um erro ao cadastrar o disco: ' . $ex->getMessage());
+        }
+        return redirect()->back()->with('error', 'Ocorreu um erro ao cadastrar o disco.');
     }
+
     public function edit($id_disco)
     {
         $v['title'] = 'Editar disco';
         $v['disco'] = $this->disco->find($id_disco);
         return response()->view('disco.edit', $v);
     }
+
     public function update(Request $req, $id_disco)
     {
-        $disco = $this->disco->find($id_disco);
-        $disco->ds_disco = $req->input('ds_disco');
-        $disco->ano = $req->input('ano');
-        $disco->id_artista = $req->input('id_artista');
-        $disco->id_genero = $req->input('id_genero') ;
-        $disco->save();
-        return redirect()->route('artista.index');
+        try {
+            $disco = $this->disco->find($id_disco);
+            $disco->ds_disco = $req->input('ds_disco');
+            $disco->ano = $req->input('ano');
+            $disco->id_artista = $req->input('id_artista');
+            $disco->id_genero = $req->input('id_genero');
+            if ($disco->save()) {
+                return redirect()->route('artista.show', \request('id_artista'))
+                    ->with('success', 'Disco editado com sucesso!');
+            }
+        } catch (\Exception $ex) {
+            return redirect()->back()->with('error', 'Ocorreu um erro ao editar o disco: ' . $ex->getMessage());
+        }
+        return redirect()->back()->with('error', 'Ocorreu um erro ao editar o disco.');
     }
 }

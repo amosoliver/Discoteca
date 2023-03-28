@@ -59,11 +59,19 @@ class ArtistaController extends Controller
     }
     public function update(Request $req, $id_artista)
     {
-        $artista = $this->artista->find($id_artista);
-        $artista->ds_artista = $req->input('ds_artista');
-        $artista->id_genero = $req->input('id_genero');
-        $artista->historia = $req->input('historia');
-        $artista->save();
-        return redirect()->route('artista.index');
+        try {
+            $artista = $this->artista->find($id_artista);
+            $artista->ds_artista = $req->input('ds_artista');
+            $artista->id_genero = $req->input('id_genero');
+            $artista->historia = $req->input('historia');
+
+            if ($artista->save()) {
+                return redirect()->route('artista.index')->with('success', 'Artista editado com sucesso!');
+            }
+        } catch (\Exception $ex) {
+            return redirect()->back()->with('error', 'Ocorreu um erro ao editar o artista: ' . $ex->getMessage());
+        }
+
+        return redirect()->back()->with('error', 'Ocorreu um erro ao editar o artista.');
     }
 }
