@@ -41,13 +41,13 @@ class ArtistaController extends Controller
             $artista->historia = $req->input('historia');
 
             if ($artista->save()) {
-                return redirect()->route('artista.index')->with('success', 'Artista registrado com sucesso!')->delay(5);
+                return redirect()->route('artista.index')->with('success', 'Artista registrado com sucesso!');
             }
         } catch (\Exception $ex) {
-            return redirect()->back()->with('error', 'Ocorreu um erro ao registrar o artista: '.$ex->getMessage())->delay(15);
+            return redirect()->back()->with('error', 'Ocorreu um erro ao registrar o artista: ' . $ex->getMessage());
         }
 
-        return redirect()->back()->with('error', 'Ocorreu um erro ao registrar o artista.')->delay(15);
+        return redirect()->back()->with('error', 'Ocorreu um erro ao registrar o artista.');
     }
 
     public function edit($id_artista)
