@@ -44,6 +44,19 @@ Route::patch('artista/{id_artista}/update' , [\App\Http\Controllers\ArtistaContr
 Route::get('artista/{id_artista}/show' , [\App\Http\Controllers\ArtistaController::class, 'show'])
     ->name('artista.show');
 
+Route::get('musica' , [\App\Http\Controllers\MusicaController::class, 'index'])
+    ->name('musica.index');
+Route::get('musica/{id_artista}/create' , [\App\Http\Controllers\MusicaController::class, 'create'])
+    ->name('musica.create');
+Route::post('musica/store' , [\App\Http\Controllers\MusicaController::class, 'store'])
+    ->name('musica.store');
+Route::get('musica/{id_musica}/edit' , [\App\Http\Controllers\MusicaController::class, 'edit'])
+    ->name('musica.edit');
+Route::patch('musica/{id_musica}/update' , [\App\Http\Controllers\MusicaController::class, 'update'])
+    ->name('musica.update');
+Route::get('musica/{id_musica}/show' , [\App\Http\Controllers\MusicaController::class, 'show'])
+    ->name('musica.show');
+
 Route::get('genero' , [\App\Http\Controllers\GeneroController::class, 'index'])
     ->name('genero.index');
 Route::get('genero/{id_genero}/show' , [\App\Http\Controllers\GeneroController::class, 'show'])
