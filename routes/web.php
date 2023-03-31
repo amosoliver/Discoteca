@@ -46,11 +46,11 @@ Route::get('artista/{id_artista}/show' , [\App\Http\Controllers\ArtistaControlle
 
 Route::get('musica' , [\App\Http\Controllers\MusicaController::class, 'index'])
     ->name('musica.index');
-Route::get('musica/{id_artista}/create' , [\App\Http\Controllers\MusicaController::class, 'create'])
+Route::get('musica/{id_disco}/create' , [\App\Http\Controllers\MusicaController::class, 'create'])
     ->name('musica.create');
 Route::post('musica/store' , [\App\Http\Controllers\MusicaController::class, 'store'])
     ->name('musica.store');
-Route::get('musica/{id_musica}/edit' , [\App\Http\Controllers\MusicaController::class, 'edit'])
+Route::get('musica/{id_disco}/edit' , [\App\Http\Controllers\MusicaController::class, 'edit'])
     ->name('musica.edit');
 Route::patch('musica/{id_musica}/update' , [\App\Http\Controllers\MusicaController::class, 'update'])
     ->name('musica.update');

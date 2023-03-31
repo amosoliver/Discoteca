@@ -26,6 +26,7 @@
                 {!! $errors->first('ds_musica')!!}
             </div>
         </div>
+        {{Form::hidden('id_disco',request('id_disco'))}}
 
     <div class="box-footer">
         <br>
