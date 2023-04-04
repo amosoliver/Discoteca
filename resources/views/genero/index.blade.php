@@ -32,7 +32,7 @@
                             {{$gen->id_genero}}
                         </td>
                         <td>
-                            <a href="#"
+                            <a href=""
                                data-toggle="modal" data-target="#myModal" data-id="{{$gen->id_genero}}">
                             {{$gen->ds_genero}}
                             </a>

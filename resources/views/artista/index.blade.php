@@ -1,4 +1,12 @@
 @extends('layout.css')
+@if(session('success'))
+    <div class="alert alert-success">{{ session('success') }}</div>
+@endif
+
+@if(session('error'))
+    <div class="alert alert-danger">{{ session('error') }}</div>
+@endif
+
 <div class="gradient-custom">
     <div class="box">
         <div class="box-header">
@@ -47,12 +55,10 @@
                                 {{$art->historia}}
                             </td>
                             <td>
-                                <button type="button" onclick="window.location='{{ route('artista.edit', $art->id_artista) }}'">
+                                <button type="button" onclick="window.location='{{ route('artista.edit',$art->id_artista) }}'">
                                     EDITAR
                                 </button>
                             </td>
-
-                        </tr>
                     @endforeach
                     </tbody>
                 </table>

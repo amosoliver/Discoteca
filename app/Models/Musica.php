@@ -13,9 +13,4 @@ class Musica extends Model
         'id_musica',
         'ds_musica'
     ];
-
-    public function artista(): \Illuminate\Database\Eloquent\Relations\BelongsTo
-    {
-        return $this->belongsTo(Disco::class, 'id_musica', 'id_musica');
-    }
 }
