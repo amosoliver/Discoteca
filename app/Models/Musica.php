@@ -13,5 +13,4 @@ class Musica extends Model
         'id_musica',
         'ds_musica'
     ];
-
 }

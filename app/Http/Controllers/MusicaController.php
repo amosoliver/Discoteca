@@ -27,7 +27,8 @@ class MusicaController extends Controller
             $musica->ds_musica = $req->input('ds_musica');
             $musica->id_disco = $req->input('id_disco');
             if ($musica->save()) {
-                return redirect()->route('disco.show',\request('id_disco'))->with('success', 'Musica registrado com sucesso!');
+                return redirect()->route('disco.show', \request('id_disco'))
+                    ->with('success', 'Musica registrado com sucesso!');
             }
         } catch (\Exception $ex) {
             return redirect()->back()->with('error', 'Ocorreu um erro ao registrar o musica: ' . $ex->getMessage());
