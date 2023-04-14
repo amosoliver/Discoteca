@@ -30,6 +30,9 @@
                         <td>
                             {{$disco->ano}}
                         </td>
+                        <td>
+                            <img src="{{ asset($disco->imagem) }}" alt="Imagem">
+                        </td>
                     </tr>
                     </tbody>
                 </table>

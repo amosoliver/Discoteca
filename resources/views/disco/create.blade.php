@@ -16,8 +16,8 @@
             <br>
         </div>
     </div>
-    {{ Form::open(['class' => 'form-horizontal','method' => 'POST', 'route' => 'disco.store']) }}
-
+    {{ Form::open(['class' => 'form-horizontal','method' => 'POST', 'route' => 'disco.store',
+    'enctype' => 'multipart/form-data']) }}
     <div class="box-body">
         <div class="form-group">
             {{ Form::label('ds_disco', 'Nome', ['class' => 'control-label col-md-3 col-lg-2']) }}
@@ -32,6 +32,10 @@
                 {{ Form::text('ano', null, ['class' => 'form-control']) }}
                 {!! $errors->first('ano')!!}
             </div>
+        </div>
+        <div class="form-group">
+        {!! Form::label('imagem', 'Imagem') !!}
+        {!! Form::file('imagem', ['class' => 'form-control']) !!}
         </div>
         <div class="form-group">
             {!! Form::model($artista, ['method' => 'POST', 'route' => 'disco.store']) !!}
@@ -53,13 +57,11 @@
         {{!!Form::close()!!}}
 
 
-
-
-    <div class="box-footer">
-        <br>
-        <button type="submit" class="btn btn-primary btn-submit ">Cadastrar</button>
-    </div>
-    {{ Form::close() }}
+        <div class="box-footer">
+            <br>
+            <button type="submit" class="btn btn-primary btn-submit ">Cadastrar</button>
+        </div>
+        {{ Form::close() }}
     </div>
 </div>
 
