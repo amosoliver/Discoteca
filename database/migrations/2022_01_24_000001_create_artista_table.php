@@ -17,6 +17,7 @@ return new class extends Migration
             $table->bigIncrements('id_artista');
             $table->string('ds_artista');
             $table->string('historia',1000);
+            $table->text('imagem');
             $table->unsignedBigInteger('id_genero');
             $table->foreign('id_genero')->references('id_genero')->on('generos');
             $table->timestamps();

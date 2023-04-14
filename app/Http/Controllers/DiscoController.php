@@ -46,22 +46,14 @@ class DiscoController extends Controller
 
     public function store(Request $req)
     {
+        $path = $req->file('imagem')->store('public/capas');
         try {
             $disco = $this->disco->newInstance();
             $disco->ds_disco = $req->input('ds_disco');
             $disco->ano = $req->input('ano');
             $disco->id_artista = $req->input('id_artista');
             $disco->id_genero = $req->input('id_genero');
-            $path = $req->file('imagem')->store('public/capas');
-            $fileName = basename($path);
-            $publicPath = public_path('storage/capas');
-            if (!File::isDirectory($publicPath)) {
-                File::makeDirectory($publicPath, 0777, true, true);
-            }
-            File::copy(storage_path('app/'.$path), $publicPath.'/'.$fileName);
-            $caminhoImagem = 'storage/capas/'.$fileName;
-            $disco->imagem = $caminhoImagem;
-
+            $disco->imagem($path);
             if ($disco->save()) {
                 return redirect()->route('artista.show', \request('id_artista'))
                     ->with('success', 'Disco registrado com sucesso!');
@@ -95,5 +87,17 @@ class DiscoController extends Controller
             return redirect()->back()->with('error', 'Ocorreu um erro ao editar o disco: ' . $ex->getMessage());
         }
         return redirect()->back()->with('error', 'Ocorreu um erro ao editar o disco.');
+    }
+    public function imagem($path)
+    {
+        $fileName = basename($path);
+        $publicPath = public_path('storage/capas');
+        if (!File::isDirectory($publicPath)) {
+            File::makeDirectory($publicPath, 0777, true, true);
+        }
+        File::copy(storage_path('app/' . $path), $publicPath . '/' . $fileName);
+        $caminhoImagem = 'storage/capas/' . $fileName;
+
+        return $caminhoImagem;
     }
 }

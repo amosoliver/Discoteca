@@ -38,6 +38,10 @@
                         <td>
                             {{$artista->historia}}
                         </td>
+                        <td>
+                            <img src="{{ asset($artista->imagem) }}" alt="Imagem">
+                        </td>
+
                     </tr>
                     </tbody>
                 </table>

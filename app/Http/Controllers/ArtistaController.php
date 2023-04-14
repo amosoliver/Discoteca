@@ -6,39 +6,48 @@ use App\Models\Artista;
 use App\Models\Genero;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\File;
 
 class ArtistaController extends Controller
 {
     public function __construct(
         private Artista $artista,
-        private Genero $genero,
-    ) {
+        private Genero  $genero,
+    )
+    {
     }
+
     public function index()
     {
         $v ['title'] = 'Artista';
         $v ['artista'] = $this->artista->all();
         return response()->view('artista.index', $v);
     }
+
     public function create()
     {
         $v['title'] = 'Cadastrar artista';
         $v['generos'] = $this->genero->selectList();
         return response()->view('artista.create', $v);
     }
+
     public function show($id_artista)
     {
         $id_artista = request('id_artista');
         $v['artista'] = $this->artista->find($id_artista);
         return response()->view('artista.show', $v);
     }
+
     public function store(Request $req)
     {
+        $path = $req->file('imagem')->store('public/capas');
         try {
+
             $artista = $this->artista->newInstance();
             $artista->ds_artista = $req->input('ds_artista');
             $artista->id_genero = $req->input('id_genero');
             $artista->historia = $req->input('historia');
+            $artista->imagem = $this->imagem($path);
 
             if ($artista->save()) {
                 return redirect()->route('artista.index')->with('success', 'Artista registrado com sucesso!');
@@ -57,6 +66,7 @@ class ArtistaController extends Controller
         $v['generos'] = $this->genero->selectList();
         return response()->view('artista.edit', $v);
     }
+
     public function update(Request $req, $id_artista)
     {
         try {
@@ -73,5 +83,18 @@ class ArtistaController extends Controller
         }
 
         return redirect()->back()->with('error', 'Ocorreu um erro ao editar o artista.');
+    }
+
+    public function imagem($path)
+    {
+        $fileName = basename($path);
+        $publicPath = public_path('storage/capas');
+        if (!File::isDirectory($publicPath)) {
+            File::makeDirectory($publicPath, 0777, true, true);
+        }
+        File::copy(storage_path('app/' . $path), $publicPath . '/' . $fileName);
+        $caminhoImagem = 'storage/capas/' . $fileName;
+
+        return $caminhoImagem;
     }
 }

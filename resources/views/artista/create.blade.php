@@ -12,7 +12,8 @@
             <br>
         </div>
     </div>
-    {{ Form::open(['class' => 'form-horizontal','method' => 'POST', 'route' => 'artista.store']) }}
+    {{ Form::open(['class' => 'form-horizontal','method' => 'POST', 'route' => 'artista.store',
+    'enctype' => 'multipart/form-data']) }}
 
     <div class="box-body">
         <div class="form-group">
@@ -35,6 +36,10 @@
                 {{ Form::text('historia', null, ['class' => 'form-control']) }}
                 {!! $errors->first('historia')!!}
             </div>
+        </div>
+        <div class="form-group">
+            {!! Form::label('imagem', 'Imagem') !!}
+            {!! Form::file('imagem', ['class' => 'form-control']) !!}
         </div>
 
     </div>
