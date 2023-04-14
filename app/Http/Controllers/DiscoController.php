@@ -7,6 +7,8 @@ use App\Models\Disco;
 use App\Models\Genero;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 
 class DiscoController extends Controller
 {
@@ -50,6 +52,16 @@ class DiscoController extends Controller
             $disco->ano = $req->input('ano');
             $disco->id_artista = $req->input('id_artista');
             $disco->id_genero = $req->input('id_genero');
+            $path = $req->file('imagem')->store('public/capas');
+            $fileName = basename($path);
+            $publicPath = public_path('storage/capas');
+            if (!File::isDirectory($publicPath)) {
+                File::makeDirectory($publicPath, 0777, true, true);
+            }
+            File::copy(storage_path('app/'.$path), $publicPath.'/'.$fileName);
+            $caminhoImagem = 'storage/capas/'.$fileName;
+            $disco->imagem = $caminhoImagem;
+
             if ($disco->save()) {
                 return redirect()->route('artista.show', \request('id_artista'))
                     ->with('success', 'Disco registrado com sucesso!');

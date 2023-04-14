@@ -17,6 +17,7 @@ return new class extends Migration
             $table->bigIncrements('id_disco');
             $table->string('ds_disco');
             $table->integer('ano');
+            $table->text('imagem');
             $table->unsignedBigInteger('id_artista');
             $table->foreign('id_artista')->references('id_artista')->on('artistas');
             $table->unsignedBigInteger('id_genero');
