@@ -16,53 +16,28 @@
             <br>
         </div>
     </div>
-    <div class="box">
-        <div class="box-body">
-            <div class="table-responsive">
-                <table class="datatable table table-bordered table-striped">
-                    <thead>
-                    <tr>
-                        <th width="10">
-                            #
-                        </th>
-                        <th width="100">
-                            Artista
-                        </th>
-                        <th width="300">
-                            História
-                        </th>
-                        <th>
-                            <button type="button" onclick="window.location='{{ route('artista.create') }}'">
-                                ADICIONAR
-                            </button>
-                        </th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    @foreach($artista as $art)
-                        <tr>
-                            <td>
-                                {{$loop->iteration}}
-                            </td>
-                            <td width="300">
-                                <div class="botton">
-                                    <a href="{{route('artista.show',['id_artista' => $art->id_artista])}}">
-                                        {{$art->ds_artista}}
-                                    </a>
-                                </div>
-                            </td>
-                            <td width="1490">
-                                {{$art->historia}}
-                            </td>
-                            <td>
-                                <button type="button" onclick="window.location='{{ route('artista.edit',$art->id_artista) }}'">
-                                    EDITAR
-                                </button>
-                            </td>
-                    @endforeach
-                    </tbody>
-                </table>
-            </div>
+    <div class="container">
+        <div class="row mt-4 d-flex justify-content-between flex-wrap no-gutters">
+            @foreach($artista as $art)
+                <div class="col-sm-6 col-md-4 col-lg-3">
+                    <div class="card">
+                        <img class="card-img-top img-fluid" src="{{ asset($art->imagem) }}"
+                             alt="Imagem do Card">
+                        <br>
+                        <div class="card-deck">
+                            <h5 class="card-title">{{$art->ds_artista}}</h5>
+                            <br>
+                            <p class="card-text">{{$art->historia}}</p>
+                        </div>
+                        <br>
+                        <a href="{{ route('artista.show', ['id_artista' => $art->id_artista ]) }}"
+                           class="btn btn-primary">Ver Artista</a>
+                    </div>
+                </div>
+            @endforeach
         </div>
     </div>
 </div>
+
+
+
