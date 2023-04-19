@@ -101,4 +101,3 @@ class DiscoController extends Controller
         return $caminhoImagem;
     }
 }
-    
