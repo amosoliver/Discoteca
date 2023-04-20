@@ -12,9 +12,8 @@ class ArtistaController extends Controller
 {
     public function __construct(
         private Artista $artista,
-        private Genero  $genero,
-    )
-    {
+        private Genero $genero,
+    ) {
     }
 
     public function index()
@@ -42,7 +41,6 @@ class ArtistaController extends Controller
     {
         $path = $req->file('imagem')->store('public/capas');
         try {
-
             $artista = $this->artista->newInstance();
             $artista->ds_artista = $req->input('ds_artista');
             $artista->id_genero = $req->input('id_genero');
