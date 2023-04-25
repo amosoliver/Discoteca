@@ -19,10 +19,11 @@
             <br>
         </div>
     </div>
+    <div class="container mt-5">
     <div class="col-sm-8">
         <div class="card-deck d-flex flex-wrap justify-content-center">
             @foreach($artista as $art)
-                <div class="card text-dark col-sm-3 mb-3">
+                <div class="card text-dark col-sm-3 mb-3 mb-4">
                     <img class="card-img-top img-fluid" src="{{ asset($art->imagem) }}" alt="Imagem do Card">
                     <div class="card-body">
                         <h5 class="card-title">{{$art->ds_artista}}</h5>
@@ -34,6 +35,7 @@
                 </div>
             @endforeach
         </div>
+    </div>
     </div>
 
 </div>
