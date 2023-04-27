@@ -10,17 +10,9 @@
 
 @include('layout.navbar')
 
-<div class="gradient-custom">
-    <div class="box">
-        <div class="box-header">
-            <div class="box-title">
-                <h1>{{ $title }}</h1>
-            </div>
-            <br>
-        </div>
-    </div>
-    <div class="container mt-5">
-    <div class="col-sm-8">
+    <div class="container">
+        <div class="row">
+    <div class="col-sm-12">
         <div class="card-deck d-flex flex-wrap justify-content-center">
             @foreach($artista as $art)
                 <div class="card text-dark col-sm-3 mb-3 mb-4">
@@ -37,8 +29,8 @@
         </div>
     </div>
     </div>
+    </div>
 
-</div>
 
 
 
