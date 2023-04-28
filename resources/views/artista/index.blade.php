@@ -1,4 +1,5 @@
 @extends('layout.css')
+@extends('layout.js')
 @if(session('success'))
     <div class="alert alert-success">{{ session('success') }}</div>
 @endif
@@ -7,62 +8,30 @@
     <div class="alert alert-danger">{{ session('error') }}</div>
 @endif
 
-<div class="gradient-custom">
-    <div class="box">
-        <div class="box-header">
-            <div class="box-title">
-                <h1>{{ $title }}</h1>
-            </div>
-            <br>
-        </div>
-    </div>
-    <div class="box">
-        <div class="box-body">
-            <div class="table-responsive">
-                <table class="datatable table table-bordered table-striped">
-                    <thead>
-                    <tr>
-                        <th width="10">
-                            #
-                        </th>
-                        <th width="100">
-                            Artista
-                        </th>
-                        <th width="300">
-                            História
-                        </th>
-                        <th>
-                            <button type="button" onclick="window.location='{{ route('artista.create') }}'">
-                                ADICIONAR
-                            </button>
-                        </th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    @foreach($artista as $art)
-                        <tr>
-                            <td>
-                                {{$loop->iteration}}
-                            </td>
-                            <td width="300">
-                                <div class="botton">
-                                    <a href="{{route('artista.show',['id_artista' => $art->id_artista])}}">
-                                        {{$art->ds_artista}}
-                                    </a>
-                                </div>
-                            </td>
-                            <td width="1490">
-                                {{$art->historia}}
-                            </td>
-                            <td>
-                                <button type="button" onclick="window.location='{{ route('artista.edit',$art->id_artista) }}'">
-                                    EDITAR
-                                </button>
-                            </td>
-                    @endforeach
-                    </tbody>
-                </table>
+@include('layout.navbar')
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card-deck d-flex flex-wrap justify-content-center">
+                @foreach($artista as $art)
+                    <div class="card text-dark col-md-12 col-lg-3 mb-3 mb-md-4 mx-3">
+                        <img class="card-img-top img-fluid" src="{{ asset($art->imagem) }}" alt="Imagem do Card">
+                        <div class="card-body">
+                            <h5 class="card-title">{{$art->ds_artista}}</h5>
+                            <p class="card-text">{{$art->historia}}</p>
+                        </div>
+                        <div class="card-footer">
+                            <small class="text-muted">Last updated 3 mins ago</small>
+                        </div>
+                    </div>
+                @endforeach
             </div>
         </div>
     </div>
 </div>
+
+
+
+
+

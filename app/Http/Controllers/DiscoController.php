@@ -53,7 +53,7 @@ class DiscoController extends Controller
             $disco->ano = $req->input('ano');
             $disco->id_artista = $req->input('id_artista');
             $disco->id_genero = $req->input('id_genero');
-            $disco->imagem($path);
+            $disco->imagem = $this->imagem($path);
             if ($disco->save()) {
                 return redirect()->route('artista.show', \request('id_artista'))
                     ->with('success', 'Disco registrado com sucesso!');
