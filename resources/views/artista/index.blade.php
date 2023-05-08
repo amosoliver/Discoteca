@@ -20,7 +20,6 @@
                         <div class="card-body">
                             <h5 class="card-title">{{$art->ds_artista}}</h5>
                             <p class="card-text">{{$art->historia}}</p>
-                            <a href="{{ route('artista.show', $art->id_artista) }}" class="btn btn-primary">VER ARTISTA</a>
                         </div>
                         <div class="card-footer">
                             <small class="text-muted">Last updated 3 mins ago</small>
@@ -31,9 +30,4 @@
         </div>
     </div>
 </div>
-
-
-
-
-
 
