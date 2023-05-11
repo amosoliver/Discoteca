@@ -3,7 +3,7 @@
 @if(session('error'))
     <div class="alert alert-danger">{{ session('error') }}</div>
 @endif
-@extends('layout.navbar')
+
 <div class="gradient-custom">
     <div class="box">
         <div class="box-header">
