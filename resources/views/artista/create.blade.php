@@ -1,10 +1,8 @@
-@extends('layout.css')
-@extends('layout.js')
+@extends('layout.default')
 @if(session('error'))
     <div class="alert alert-danger">{{ session('error') }}</div>
 @endif
-
-<div class="gradient-custom">
+@section('main')
     <div class="box">
         <div class="box-header">
             <div class="box-title">
@@ -50,8 +48,8 @@
         </div>
         {{ Form::close() }}
     </div>
+@endsection
 
-</div>
 
 
 
