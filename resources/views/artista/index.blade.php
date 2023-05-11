@@ -8,12 +8,11 @@
     <div class="alert alert-danger">{{ session('error') }}</div>
 @endif
 
-@include('layout.navbar')
 
 <div class="container">
     <div class="row">
         <div class="col-lg-12">
-            <div class="card-deck d-flex flex-wrap justify-content-center">
+            <div class="card-deck d-flex flex-wrap">
                 @foreach($artista as $art)
                     <div class="card text-dark col-md-12 col-lg-3 mb-3 mb-md-4 mx-3">
                         <img class="card-img-top img-fluid" src="{{ asset($art->imagem) }}" alt="Imagem do Card">
