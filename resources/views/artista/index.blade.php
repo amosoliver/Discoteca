@@ -9,16 +9,17 @@
 @if(session('error'))
     <div class="alert alert-danger">{{ session('error') }}</div>
 @endif
-
-
-
-<div class="container-fluid-center mx-3 mt-4">
-    <div class="row row-cols-2 row-cols-md-3 g-4 row-cols-lg-6">
-            @foreach($artista as $art)
+<div class="container-fluid mt-2">
+    <div class="d-flex justify-content-end">
+        <a href="{{ route('artista.create') }}" class="btn btn-success">Adicionar</a>
+    </div>
+</div>
+<div class="container-fluid-center mb-6 mx-3 mt-4">
+    <div class="row row-cols-1 row-cols-md-3 g-4 row-cols-lg-4 row-cols-xl-5 row-cols-xxl-6 row-cols-sm-2 ">
+        @foreach($artista as $art)
             <div class="col">
                 <div class="card">
-                    <img class="card-img-top" src="{{ asset($art->imagem) }}" alt="Imagem do Card"
-                         style="height: 200px;">
+                    <img class="card-img-top" src="{{ asset($art->imagem) }}" alt="Imagem do Card" style="height: 200px;">
                     <div class="card-body" style="min-height: 140px">
                         <h5 class="card-title"><a href="{{ route('artista.show', $art->id_artista) }}">
                                 {{$art->ds_artista}}</a></h5>
@@ -32,5 +33,6 @@
         @endforeach
     </div>
 </div>
+
     @endsection
 
