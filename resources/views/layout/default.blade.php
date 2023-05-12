@@ -60,12 +60,17 @@
 <main>
     @yield('main')
 </main>
-<footer class="text-center mt-4 bg-dark text-muted">
-    <div class="text-center p-4" style="background-color: rgba(255, 255, 255, 0.05);">
-        © 2023 Direitos Reservados:
-        <a class="text-reset fw-bold" href="https://mdbootstrap.com/">MDBootstrap.com</a>
+
+<nav class="navbar navbar-dark bg-dark text-white fixed-bottom">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col">
+            © 2023 Direitos Reservados:
+            <a class="text-reset fw-bold" href="https://mdbootstrap.com/">MDBootstrap.com</a>
+             </div>
+        </div>
     </div>
-</footer>
+</nav>
 
 </body>
 </html>
