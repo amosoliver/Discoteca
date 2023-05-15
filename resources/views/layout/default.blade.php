@@ -2,6 +2,7 @@
 <html lang="en" data-bs-theme="auto">
 <head>
     <title>Discoteca</title>
+    <link rel="icon" href="resources/img/istockphoto-1367877060-612x612.jpg">
     <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/starter-template/">
     <link href="/docs/5.3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
