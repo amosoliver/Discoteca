@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('layout.welcome');
 });
 
 Route::get('disco' , [\App\Http\Controllers\DiscoController::class, 'index'])
