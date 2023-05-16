@@ -52,7 +52,9 @@
 </header>
 
 <main>
+    <div class="container-fluid">
     @yield('main')
+    </div>
 </main>
 
 <nav class="navbar navbar-dark bg-dark text-white fixed-bottom">

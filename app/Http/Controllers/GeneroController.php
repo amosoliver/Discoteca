@@ -15,7 +15,7 @@ class GeneroController extends Controller
 
     public function index()
     {
-        $v ['title'] = 'Genero';
+        $v ['title'] = 'Gênero';
         $v ['genero'] = $this->genero->all();
         return response()->view('genero.index', $v);
     }

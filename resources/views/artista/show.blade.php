@@ -1,5 +1,6 @@
-@extends('layout.css')
-@extends('layout.js')
+@extends('layout.default')
+
+@section('main')
 @if(session('success'))
     <div class="alert alert-success">{{ session('success') }}</div>
 @endif
@@ -7,7 +8,6 @@
 @if(session('error'))
     <div class="alert alert-danger">{{ session('error') }}</div>
 @endif
-@extends('layout.default')
 
 <div class="gradient-custom">
     <div class="box">
@@ -104,5 +104,5 @@
                 </table>
             </div>
 
-
+@endsection
 
