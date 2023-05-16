@@ -62,5 +62,4 @@ class GeneroController extends Controller
 
         return redirect()->back()->with('error', 'Ocorreu um erro ao editar o gênero.');
     }
-
 }
