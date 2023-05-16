@@ -21,7 +21,7 @@ class ArtistaController extends Controller
         if ($request->filled('id_genero')) {
             $idGenero = $request->input('id_genero');
             $idGeneroArray = explode(',', $idGenero);
-            $v['artista'] = $this->artista->whereIn('id_genero',$idGeneroArray)->get();
+            $v['artista'] = $this->artista->whereIn('id_genero', $idGeneroArray)->get();
             $v['title'] = 'Artistas de'  ;
             return response()->view('artista.index', $v);
         }

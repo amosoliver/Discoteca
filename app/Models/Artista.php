@@ -39,8 +39,4 @@ class Artista extends Model
         }
         return $arr;
     }
-
-
-
-
 }

@@ -25,7 +25,7 @@ class DiscoController extends Controller
             $idGenero = $request->input('id_genero');
             $idGeneroArray = explode(',', $idGenero);
             $v['title'] = 'Discos de ';
-            $v['disco'] = $this->disco->whereIn('id_genero',$idGeneroArray)->get();
+            $v['disco'] = $this->disco->whereIn('id_genero', $idGeneroArray)->get();
             return response()->view('disco.index', $v);
         }
 
