@@ -12,53 +12,77 @@
             </div>
         </div>
         <div class="container-fluid-center mb-6 mx-3 mt-3 pb-5">
-            <div class="row row-cols-1 row-cols-md-3 g-4 row-cols-lg-4 row-cols-xl-5 row-cols-xxl-6 row-cols-sm-2 ">
-                @foreach($genero as $gen)
-                    <div class="col">
-                        <div class="card">
-                            <h5 class="card-title text-center">
-                                <a href=""
-                                   data-toggle="modal" data-target="#myModal" data-id="{{$gen->id_genero}}">
-                                    {{$gen->ds_genero}}
-                                </a>
-                            </h5>
+            <form id="genreForm" action="{{ route('artista.index') }}">
+                @csrf
+                <div class="row row-cols-1 row-cols-md-3 g-4 row-cols-lg-4 row-cols-xl-5 row-cols-xxl-6 row-cols-sm-2">
+                    @foreach($genero as $gen)
+                        <div class="col">
+                            <div class="card">
+                                <h5 class="card-title justify-content-between">
+                                    <label class="justify-content-end">
+                                        <input type="checkbox" name="id_genero[]" value="{{ $gen->id_genero }}">
+                                        {{ $gen->ds_genero }}
+                                    </label>
+                                </h5>
+                            </div>
                         </div>
+                    @endforeach
+                </div>
+                <div class="text-center">
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Submeter
+                    </button>
+                </div>
+            </form>
+        </div>
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <h4 class="modal-title" id="myModalLabel">O que deseja ver dos gêneros selecionados:</h4>
                     </div>
-                @endforeach
+                    <div class="modal-body text-center">
+                        <button type="button" class="btn btn-primary btn-block" onclick="redirectToArtista()">
+                            Artista
+                        </button>
+                        <button type="button" class="btn btn-primary btn-block" onclick="redirectToDisco()">
+                            Disco
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
+        <script>
 
-    <script>
-        $('#myModal').on('show.bs.modal', function (event) {
-            var link = $(event.relatedTarget);
-            var genreId = link.data('id');
-            $('#genre-id').text(genreId);
-        });
-    </script>
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span
-                            aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">O que deseja ver do genero <span
-                            id="#genre-id"></span>
-                    </h4>
-                </div>
-                <div class="modal-body">
-                    <button type="button" onclick="window.location='{{ route('artista.index',[])}}'">
-                        Artista
-                    </button>
-                    <button type="button" onclick="window.location='{{ route('disco.index')}}'">
-                        Disco
-                    </button>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
-                    <button type="button" class="btn btn-primary">Salvar mudanças</button>
-                </div>
-            </div>
-        </div>
-    </div>
+            function redirectToArtista() {
+                redirectToRoute('artista.index');
+            }
+
+            function redirectToDisco() {
+                redirectToRoute('disco.index');
+            }
+
+            function redirectToRoute(route) {
+                var genreIds = [];
+                $('input[name="id_genero[]"]:checked').each(function() {
+                    genreIds.push($(this).val());
+                });
+
+                // Construir a URL da rota com os parâmetros
+                var url;
+                if (route === 'artista.index') {
+                    url = '{{ route('artista.index', ['id_genero' => 'GENRE_IDS']) }}';
+                } else if (route === 'disco.index') {
+                    url = '{{ route('disco.index', ['id_genero' => 'GENRE_IDS']) }}';
+                }
+                url = url.replace('GENRE_IDS', genreIds.join(','));
+
+                // Redirecionar para a URL
+                window.location.href = url;
+            }
+
+        </script>
+
 @endsection

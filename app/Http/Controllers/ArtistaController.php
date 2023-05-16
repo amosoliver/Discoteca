@@ -16,12 +16,22 @@ class ArtistaController extends Controller
     ) {
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $v ['title'] = 'Artista';
-        $v ['artista'] = $this->artista->all();
+        if ($request->filled('id_genero')) {
+            $idGenero = $request->input('id_genero');
+            $idGeneroArray = explode(',', $idGenero);
+            $v['artista'] = $this->artista->whereIn('id_genero',$idGeneroArray)->get();
+            $v['title'] = 'Artistas de'  ;
+            return response()->view('artista.index', $v);
+        }
+
+        $v['title'] = 'Artistas';
+        $v['artista'] = $this->artista->all();
         return response()->view('artista.index', $v);
     }
+
+
 
     public function create()
     {
