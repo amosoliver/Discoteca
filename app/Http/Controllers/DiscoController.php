@@ -19,10 +19,18 @@ class DiscoController extends Controller
     ) {
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $v ['title'] = 'Disco';
-        $v ['disco'] = $this->disco->all();
+        if ($request->filled('id_genero')) {
+            $idGenero = $request->input('id_genero');
+            $idGeneroArray = explode(',', $idGenero);
+            $v['title'] = 'Discos de ';
+            $v['disco'] = $this->disco->whereIn('id_genero', $idGeneroArray)->get();
+            return response()->view('disco.index', $v);
+        }
+
+        $v['title'] = 'Discos';
+        $v['disco'] = $this->disco->all();
         return response()->view('disco.index', $v);
     }
 

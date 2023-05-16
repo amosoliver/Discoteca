@@ -23,6 +23,10 @@ class Artista extends Model
         return $this->hasMany(Disco::class, 'id_artista');
     }
 
+    public function genero()
+    {
+        return $this->belongsTo(Disco::class, 'id_genero');
+    }
     public function selectList($id_artista)
     {
         $artistas = $this->orderBy('ds_artista')

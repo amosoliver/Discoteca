@@ -10,10 +10,18 @@
     <div class="alert alert-danger">{{ session('error') }}</div>
 @endif
 <div class="container-fluid mt-2 ml-3 mr-3">
-    <div class="d-flex justify-content-end">
-        <a href="{{ route('artista.create') }}" class="btn btn-success">Adicionar</a>
+    <div class="box">
+        <div class="box-header d-flex justify-content-between align-items-center">
+            <div class="box-title">
+                <h1>{{$title}}</h1>
+            </div>
+            <div>
+                <a href="{{ route('artista.create') }}" class="btn btn-success">Adicionar</a>
+            </div>
+        </div>
     </div>
 </div>
+
 <div class="container-fluid-center mb-6 mx-3 mt-3 pb-5">
     <div class="row row-cols-1 row-cols-md-3 g-4 row-cols-lg-4 row-cols-xl-6 row-cols-xxl-6 row-cols-sm-2 ">
         @foreach($artista as $art)
