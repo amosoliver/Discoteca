@@ -8,9 +8,15 @@
                 <div class="box-title">
                     <h1>{{$title}}</h1>
                 </div>
+                <div>
+                    <a href="{{ route('genero.create') }}" class="btn btn-success">Adicionar</a>
+                </div>
                 <br>
             </div>
         </div>
+
+        <div class="box">
+            </div>
         <div class="container-fluid-center mb-6 mx-3 mt-3 pb-5">
             <form id="genreForm" action="{{ route('artista.index') }}">
                 @csrf

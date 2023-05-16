@@ -59,5 +59,13 @@ Route::get('musica/{id_musica}/show' , [\App\Http\Controllers\MusicaController::
 
 Route::get('genero' , [\App\Http\Controllers\GeneroController::class, 'index'])
     ->name('genero.index');
-Route::get('genero/{id_genero}/show' , [\App\Http\Controllers\GeneroController::class, 'show'])
-    ->name('genero.show');
+    Route::get('genero/{id_genero}/edit' , [\App\Http\Controllers\GeneroController::class, 'edit'])
+    ->name('genero.edit');
+    Route::get('genero/create' , [\App\Http\Controllers\GeneroController::class, 'create'])
+    ->name('genero.create');
+    Route::get('genero/create' , [\App\Http\Controllers\GeneroController::class, 'create'])
+    ->name('genero.create');
+Route::post('genero/store' , [\App\Http\Controllers\GeneroController::class, 'store'])
+    ->name('genero.store');
+Route::patch('genero/{id_genero}/update' , [\App\Http\Controllers\GeneroController::class, 'update'])
+    ->name('genero.update');
