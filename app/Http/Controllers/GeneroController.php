@@ -19,10 +19,47 @@ class GeneroController extends Controller
         $v ['genero'] = $this->genero->all();
         return response()->view('genero.index', $v);
     }
-    public function show($id_genero)
+
+    public function create()
     {
-        $id_genero = request('id_genero');
+        $v['title'] = 'Cadastrar genero';
+        return response()->view('genero.create', $v);
+    }
+
+    public function store(Request $req)
+    {
+        try {
+            $genero = $this->genero->newInstance();
+            $genero->ds_genero = $req->input('ds_genero');
+            if ($genero->save()) {
+                return redirect()->route('genero.index')
+                    ->with('success', 'genero registrado com sucesso!');
+            }
+        } catch (\Exception $ex) {
+            return redirect()->back()->with('error', 'Ocorreu um erro ao registrar o genero: ' . $ex->getMessage());
+        }
+
+        return redirect()->back()->with('error', 'Ocorreu um erro ao registrar o genero.');
+    }
+
+    public function edit($id_genero)
+    {
+        $v['title'] = 'Editar genero';
         $v['genero'] = $this->genero->find($id_genero);
-        return response()->view('genero.show', $v);
+        return response()->view('genero.edit', $v);
+    }
+    public function update(Request $req, $id_genero)
+    {
+        try {
+            $genero = $this->genero->find($id_genero);
+            $genero->ds_genero = $req->input('ds_genero');
+            if ($genero->save()) {
+                return redirect()->route('genero.index')->with('success', 'Gênero editado com sucesso!');
+            }
+        } catch (\Exception $ex) {
+            return redirect()->back()->with('error', 'Ocorreu um erro ao editar o gênero: ' . $ex->getMessage());
+        }
+
+        return redirect()->back()->with('error', 'Ocorreu um erro ao editar o gênero.');
     }
 }
