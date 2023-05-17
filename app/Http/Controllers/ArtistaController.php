@@ -105,4 +105,19 @@ class ArtistaController extends Controller
 
         return $caminhoImagem;
     }
-}
+
+    public function destroy($id_artista) {
+        try {
+            $artista = $this->artista->find($id_artista);
+
+            if ($artista->delete()) {
+                return redirect()->route('artista.index')->with('sucess', 'Artista excluido com sucesso!');
+            }
+        } catch (\Exception $ex) {
+            return redirect()->back()->with('error', 'Ocorreu um erro ao excluir o artista: ' . $ex->getMessage());
+        }
+
+        return redirect()->back()->with('error', 'Ocorreu um erro ao excluir o artista.');
+    }
+    }
+
