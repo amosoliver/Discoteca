@@ -1,4 +1,5 @@
-@extends('layout.css')
+@extends('layout.default')
+@section('main')
 <div class="gradient-custom">
     <div class="box">
         <div class="box-header">
@@ -84,5 +85,5 @@
                 </table>
             </div>
 
-
+@endsection
 

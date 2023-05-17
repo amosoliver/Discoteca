@@ -22,6 +22,7 @@
     </div>
 </div>
 
+
 <div class="container-fluid-center mb-6 mx-3 mt-3 pb-5">
     <div class="row row-cols-1 row-cols-md-3 g-4 row-cols-lg-4 row-cols-xl-6 row-cols-xxl-6 row-cols-sm-2 ">
         @foreach($artista as $art)

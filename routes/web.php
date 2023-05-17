@@ -43,6 +43,8 @@ Route::patch('artista/{id_artista}/update' , [\App\Http\Controllers\ArtistaContr
     ->name('artista.update');
 Route::get('artista/{id_artista}/show' , [\App\Http\Controllers\ArtistaController::class, 'show'])
     ->name('artista.show');
+Route::delete('artista/{id_artista}/destroy' , [\App\Http\Controllers\ArtistaController::class, 'destroy'])
+    ->name('artista.destroy');
 
 Route::get('musica' , [\App\Http\Controllers\MusicaController::class, 'index'])
     ->name('musica.index');
