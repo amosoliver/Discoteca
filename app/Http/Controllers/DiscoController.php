@@ -96,6 +96,20 @@ class DiscoController extends Controller
         }
         return redirect()->back()->with('error', 'Ocorreu um erro ao editar o disco.');
     }
+
+    public function destroy($id_disco) {
+        try {
+            $disco = $this->disco->find($id_disco);
+
+            if ($disco->delete()) {
+                return redirect()->route('disco.index')->with('sucess', 'Disco excluido com sucesso!');
+            }
+        } catch (\Exception $ex) {
+            return redirect()->back()->with('error', 'Ocorreu um erro ao excluir o disco: ' . $ex->getMessage());
+        }
+        return redirect()->back()->with('error', 'Ocorreu um erro ao excluir o disco.');
+    }
+
     public function imagem($path)
     {
         $fileName = basename($path);

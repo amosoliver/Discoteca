@@ -1,13 +1,19 @@
 @extends('layout.default')
 @section('main')
-<div class="gradient-custom">
-    <div class="box">
+< <div class="container border mt-5 ">
+    <div class="box mt-2">
         <div class="box-header">
             <div class="box-title">
-                <h1>{{$title}}</h1>
+                <h1>{{ $title }}</h1>
             </div>
             <br>
         </div>
+        <form action="{{ route('disco.destroy', $disco->id_artista) }}" method="POST">
+            @csrf
+            @method('DELETE')
+            <button type="submit" class="btn btn-danger btn-submit justify-text-center">EXCLUIR</button>
+        </form>
+    </div>
         <div class="box-body">
             <div class="form-group">
                 {!! Form::model($disco, ['method' => 'PATCH', 'route' => ['disco.update',$disco->id_disco]]) !!}

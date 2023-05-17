@@ -30,6 +30,8 @@ Route::get('disco/{id_disco}/{id_artista}/{id_genero}/edit' , [\App\Http\Control
     ->name('disco.edit');
 Route::patch('disco/{id_disco}/update' , [\App\Http\Controllers\DiscoController::class, 'update'])
     ->name('disco.update');
+Route::delete('disco/{id_disco}/destroy' , [\App\Http\Controllers\DiscoController::class, 'destroy'])
+    ->name('disco.destroy');
 
 Route::get('artista' , [\App\Http\Controllers\ArtistaController::class, 'index'])
     ->name('artista.index');
