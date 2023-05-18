@@ -106,7 +106,8 @@ class ArtistaController extends Controller
         return $caminhoImagem;
     }
 
-    public function destroy($id_artista) {
+    public function destroy($id_artista)
+    {
         try {
             $artista = $this->artista->find($id_artista);
 
@@ -119,5 +120,4 @@ class ArtistaController extends Controller
 
         return redirect()->back()->with('error', 'Ocorreu um erro ao excluir o artista.');
     }
-    }
-
+}
