@@ -18,6 +18,13 @@ Route::get('/', function () {
     return view('layout.welcome');
 });
 
+Route::get('user/create' , [\App\Http\Controllers\AuthController::class, 'create'])
+    ->name('user.create');
+Route::post('user/store' , [\App\Http\Controllers\AuthController::class, 'store'])
+    ->name('user.store');
+Route::get('user/login' , [\App\Http\Controllers\AuthController::class, 'autenticar'])
+    ->name('user.login');
+
 Route::get('disco' , [\App\Http\Controllers\DiscoController::class, 'index'])
     ->name('disco.index');
 Route::get('disco/{id_disco}/show' , [\App\Http\Controllers\DiscoController::class, 'show'])
@@ -32,7 +39,7 @@ Route::patch('disco/{id_disco}/update' , [\App\Http\Controllers\DiscoController:
     ->name('disco.update');
 
 Route::get('artista' , [\App\Http\Controllers\ArtistaController::class, 'index'])
-    ->name('artista.index');
+    ->name('artista.index')->middleware('guest');
 Route::get('artista/create' , [\App\Http\Controllers\ArtistaController::class, 'create'])
     ->name('artista.create');
 Route::post('artista/store' , [\App\Http\Controllers\ArtistaController::class, 'store'])
