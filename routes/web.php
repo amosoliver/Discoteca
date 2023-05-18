@@ -22,8 +22,12 @@ Route::get('user/create' , [\App\Http\Controllers\AuthController::class, 'create
     ->name('user.create');
 Route::post('user/store' , [\App\Http\Controllers\AuthController::class, 'store'])
     ->name('user.store');
-Route::get('user/login' , [\App\Http\Controllers\AuthController::class, 'autenticar'])
+Route::get('user/login' , [\App\Http\Controllers\AuthController::class, 'login'])
     ->name('user.login');
+Route::post('user/autenticar' , [\App\Http\Controllers\AuthController::class, 'autenticar'])
+    ->name('user.autenticar');
+
+
 
 Route::get('disco' , [\App\Http\Controllers\DiscoController::class, 'index'])
     ->name('disco.index');
