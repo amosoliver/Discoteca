@@ -9,6 +9,7 @@
                 <div class="box-title">
                     <h1>{{ $title }}</h1>
                 </div>
+                <p><a href="{{'user.create'}}">Criar Conta</a></p>
                 <br>
             </div>
         </div>
