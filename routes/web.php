@@ -26,6 +26,8 @@ Route::get('user/login' , [\App\Http\Controllers\AuthController::class, 'login']
     ->name('user.login');
 Route::post('user/autenticar' , [\App\Http\Controllers\AuthController::class, 'autenticar'])
     ->name('user.autenticar');
+    Route::get('user/logout' , [\App\Http\Controllers\AuthController::class, 'logout'])
+    ->name('user.logout');
 
 
 

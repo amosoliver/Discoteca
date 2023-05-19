@@ -39,6 +39,13 @@
                     </div>
                 @endif
             </div>
+
+            <br>
+
+            @if ($errors->first('password') | $errors->first('email'))
+            <p><a href="{{'user.password'}}">Esqueceu a senha ?</a></p>
+
+            @endif
         </div>
 
         <div class="box-footer mb-2 text-end">
