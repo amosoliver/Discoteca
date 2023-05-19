@@ -28,10 +28,13 @@
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="/">Home</a>
                     </li>
+                    @guest
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="{{route('user.login')}}">Login</a>
                     </li>
 
+
+                    @else
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                            aria-expanded="false">
@@ -48,6 +51,7 @@
                             <li><a class="dropdown-item" href="#">Sair</a></li>
                         </ul>
                     </li>
+                    @endguest
                 </ul>
             </div>
         </div>

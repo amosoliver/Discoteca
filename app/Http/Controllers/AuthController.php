@@ -38,18 +38,30 @@ class AuthController extends Controller
         }
         return redirect()->back()->with('error', 'Ocorreu um erro ao cadastrar o usuário.');
     }
-    public function autenticar(Request $req)
+
+    public function login()
     {
-        $login = $req-> validate([
-           'email' => ['required','email'],
-            'password' => ['required'],
+        $v['title'] = 'Login';
+
+        return view('user.login', $v);
+    }
+
+
+    public function autenticar(Request $request)
+    {
+        $credentials = $request->validate([
+        'email' => ['required', 'email'],
+        'password' => ['required'],
         ]);
-        if (Auth::attempt($login)) {
-            $req->session()->regenerate();
-            return redirect()->route('artista.index');
+
+        if (Auth::attempt($credentials)) {
+            $request->session()->regenerate();
+
+            return redirect()->intended('/dashboard');
         }
+
         return back()->withErrors([
-            'email' => 'Email Invalido',
-        ])->onlyInput('email');
+        'email' => 'Credenciais inválidas.',
+        ]);
     }
 }
