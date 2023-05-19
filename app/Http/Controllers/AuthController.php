@@ -40,28 +40,28 @@ class AuthController extends Controller
     }
 
     public function login()
-{
-    $v['title'] = 'Login';
+    {
+        $v['title'] = 'Login';
 
-    return view('user.login',$v);
-}
+        return view('user.login', $v);
+    }
 
 
     public function autenticar(Request $request)
-{
-    $credentials = $request->validate([
+    {
+        $credentials = $request->validate([
         'email' => ['required', 'email'],
         'password' => ['required'],
-    ]);
+        ]);
 
-    if (Auth::attempt($credentials)) {
-        $request->session()->regenerate();
+        if (Auth::attempt($credentials)) {
+            $request->session()->regenerate();
 
-        return redirect()->intended('/dashboard');
-    }
+            return redirect()->intended('/dashboard');
+        }
 
-    return back()->withErrors([
+        return back()->withErrors([
         'email' => 'Credenciais inválidas.',
-    ]);
-}
+        ]);
+    }
 }
