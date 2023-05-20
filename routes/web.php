@@ -45,7 +45,7 @@ Route::patch('disco/{id_disco}/update' , [\App\Http\Controllers\DiscoController:
     ->name('disco.update');
 
 Route::get('artista' , [\App\Http\Controllers\ArtistaController::class, 'index'])
-    ->name('artista.index')->middleware('guest');
+    ->name('artista.index');
 Route::get('artista/create' , [\App\Http\Controllers\ArtistaController::class, 'create'])
     ->name('artista.create');
 Route::post('artista/store' , [\App\Http\Controllers\ArtistaController::class, 'store'])
