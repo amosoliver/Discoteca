@@ -28,14 +28,14 @@ Route::post('user/autenticar' , [\App\Http\Controllers\AuthController::class, 'a
     ->name('user.autenticar');
     Route::get('user/logout' , [\App\Http\Controllers\AuthController::class, 'logout'])
     ->name('user.logout');
-    Route::get('trocar-senha/{id}',[ \App\Http\Controllers\AuthController::class,'trocarSenhaForm'])
-    ->name('user.trocar_senha');
-    Route::post('/trocar-senha/{id}', [\App\Http\Controllers\AuthController::class,'trocarSenha'])
-    ->name('user.trocar_senha');
-    Route::get('enviar-email', [\App\Http\Controllers\AuthController::class,'enviarEmailForm'])
-    ->name('user.enviar_email');
-Route::post('enviar-email', [\App\Http\Controllers\AuthController::class, 'enviarEmail'])
-->name('user.store_email');
+
+    Route::get('trocar-senha/{id}', [\App\Http\Controllers\AuthController::class, 'trocarSenha'])->name('user.trocar.senha.get');
+
+    Route::post('/trocar-senha', [\App\Http\Controllers\AuthController::class,'trocarSenha'])->name('user.trocar.senha.post');
+
+    Route::get('enviar-email', [\App\Http\Controllers\AuthController::class,'enviarEmailForm'])->name('user.enviar_email');
+
+    Route::post('enviar-email', [\App\Http\Controllers\AuthController::class, 'enviarEmail'])->name('user.store_email');
 
 
 

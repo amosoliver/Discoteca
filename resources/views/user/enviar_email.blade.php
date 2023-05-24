@@ -8,7 +8,7 @@
             <div class="alert alert-danger">{{ session('error') }}</div>
         @endif
 
-        {!! Form::open(['route' => 'user.enviar_email']) !!}
+        {!! Form::open(['route' => 'user.store_email']) !!}
 
             <div class="form-group">
                 {!! Form::label('email', 'Email') !!}
