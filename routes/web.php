@@ -28,6 +28,10 @@ Route::post('user/autenticar' , [\App\Http\Controllers\AuthController::class, 'a
     ->name('user.autenticar');
     Route::get('user/logout' , [\App\Http\Controllers\AuthController::class, 'logout'])
     ->name('user.logout');
+    Route::get('user/password' , [\App\Http\Controllers\AuthController::class, 'password'])
+    ->name('user.password');
+    Route::get('user/store' , [\App\Http\Controllers\AuthController::class, 'store'])
+    ->name('user.store');
 
 
 

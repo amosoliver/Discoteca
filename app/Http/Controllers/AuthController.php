@@ -30,7 +30,7 @@ class AuthController extends Controller
             $user->email = $req->input('email');
             $user->password = Hash::make($req->input('password'));
             if ($user->save()) {
-                return redirect()->route('artista.index')
+                return redirect()->route('user.login')
                     ->with('success', 'Usuário registrado com sucesso!');
             }
         } catch (\Exception $ex) {
@@ -71,4 +71,28 @@ class AuthController extends Controller
         Auth::logout();
         return redirect()->route('user.login');
     }
+
+    public function password($id)
+    {
+        $v['title'] = 'Editar Senha';
+        $v['user'] = $this->user->find($id);
+
+        return view('user.password', $v);
+    }
+
+    public function update(Request $request, $id)
+    {
+        $user = $this->user->find($id);
+
+        // Valide os campos de senha, aqui você pode adicionar as regras de validação desejadas
+        $request->validate([
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
+        ]);
+
+        $user->password = Hash::make($request->input('password'));
+        $user->save();
+
+        return redirect()->route('user.login')->with('success', 'Senha atualizada com sucesso!');
+    }
+
 }

@@ -1,4 +1,7 @@
 @extends('layout.default')
+@if(session('success'))
+<div class="alert alert-success">{{ session('success') }}</div>
+@endif
 @if (session('error'))
     <div class="alert alert-danger">{{ session('error') }}</div>
 @endif
@@ -9,7 +12,7 @@
                 <div class="box-title">
                     <h1>{{ $title }}</h1>
                 </div>
-                <p><a href="{{'user.create'}}">Criar Conta</a></p>
+                <p><a href="{{route('user.create')}}">Criar Conta</a></p>
                 <br>
             </div>
         </div>
@@ -40,12 +43,15 @@
                 @endif
             </div>
 
-            <br>
+            @if (isset($user) && ($errors->has('password') || $errors->has('email')))
+            {!! Form::open(['route' => 'user.password', 'method' => 'post']) !!}
+            {!! Form::hidden('id', $user->id) !!}
+            {!! Form::submit('Trocar Senha', ['class' => 'btn btn-primary']) !!}
+            {!! Form::close() !!}
+        @endif
 
-            @if ($errors->first('password') | $errors->first('email'))
-            <p><a href="{{'user.password'}}">Esqueceu a senha ?</a></p>
 
-            @endif
+
         </div>
 
         <div class="box-footer mb-2 text-end">
