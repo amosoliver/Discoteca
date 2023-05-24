@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 class AuthController extends Controller
 {
@@ -72,27 +73,53 @@ class AuthController extends Controller
         return redirect()->route('user.login');
     }
 
-    public function password($id)
+    public function trocarSenhaForm($id)
     {
-        $v['title'] = 'Editar Senha';
-        $v['user'] = $this->user->find($id);
+        $user = User::find($id);
 
-        return view('user.password', $v);
+        if (!$user) {
+            return redirect()->back()->with('error', 'Usuário não encontrado.');
+        }
+
+        return view('user.trocar_senha', ['user' => $user]);
     }
 
-    public function update(Request $request, $id)
+    public function trocarSenha(Request $request, $id)
     {
-        $user = $this->user->find($id);
+        // Lógica para trocar a senha do usuário
 
-        // Valide os campos de senha, aqui você pode adicionar as regras de validação desejadas
-        $request->validate([
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
-        ]);
-
-        $user->password = Hash::make($request->input('password'));
-        $user->save();
-
-        return redirect()->route('user.login')->with('success', 'Senha atualizada com sucesso!');
+        return redirect()->back()->with('success', 'Senha trocada com sucesso!');
     }
+
+    public function enviarEmailForm()
+{
+    return view('user.enviar_email');
+}
+
+
+public function enviarEmail(Request $request)
+{
+    $email = $request->input('email');
+    $user = User::where('email', $email)->first();
+
+    if (!$user) {
+        return redirect()->back()->with('error', 'O email não está registrado.');
+    }
+
+    // Gerar um token para a troca de senha e salvar no banco de dados
+    $token = bcrypt(Str::random(40));
+    $user->troca_senha_token = $token;
+    $user->save();
+
+    // Enviar o e-mail usando a função mail() do PHP
+    $to = $user->email;
+    $subject = 'Troca de Senha';
+    $message = "Olá, {$user->name}! Você solicitou a troca de senha.\n\nClique no link a seguir para trocar sua senha: " . route('user.trocar_senha', ['token' => $token]);
+
+    mail($to, $subject, $message);
+
+    return redirect()->route('user.trocar_senha')->with('email', $email);
+}
+
 
 }
