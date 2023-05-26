@@ -85,7 +85,7 @@ class AuthController extends Controller
 
         if ($user) {
             $idUser = $user->id;
-            return view('user.troca_senha', ['id' => $idUser]);
+            return redirect()->route('user.trocar.senha.get', ['id' => $idUser]);
         } else {
             return redirect()->back()->with('error', 'O email não está registrado.');
         }
@@ -101,7 +101,7 @@ class AuthController extends Controller
     public function trocarSenha(Request $request, $id)
     {
 
-
+        $user = User::find($id);
         return redirect()->back()->with('success', 'Senha trocada com sucesso!');
     }
 

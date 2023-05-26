@@ -12,7 +12,7 @@
             <div class="alert alert-danger">{{ session('error') }}</div>
         @endif
 
-        {!! Form::open(['route' => ['user.trocar_senha', 'id' => $user->id]]) !!}
+        {!! Form::open(['route' => ['user.trocar.senha.post', 'id' => request('id')]]) !!}
 
             <div class="form-group">
                 {!! Form::label('password', 'Nova Senha') !!}

@@ -29,7 +29,7 @@ Route::post('user/autenticar' , [\App\Http\Controllers\AuthController::class, 'a
     Route::get('user/logout' , [\App\Http\Controllers\AuthController::class, 'logout'])
     ->name('user.logout');
 
-    Route::get('trocar-senha/{id}', [\App\Http\Controllers\AuthController::class, 'trocarSenha'])->name('user.trocar.senha.get');
+    Route::get('trocar-senha/{id}', [\App\Http\Controllers\AuthController::class, 'trocarSenhaForm'])->name('user.trocar.senha.get');
 
     Route::post('/trocar-senha', [\App\Http\Controllers\AuthController::class,'trocarSenha'])->name('user.trocar.senha.post');
 
