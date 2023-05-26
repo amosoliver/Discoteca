@@ -104,6 +104,4 @@ class AuthController extends Controller
         $user = User::find($id);
         return redirect()->back()->with('success', 'Senha trocada com sucesso!');
     }
-
-
 }
