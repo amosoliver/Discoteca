@@ -93,15 +93,20 @@ class AuthController extends Controller
 
     public function trocarSenhaForm($id)
     {
-        $user = User::find($id);
-
+        $v ['title'] = 'Trocar Senha';
         return view('user.trocar_senha');
     }
-
     public function trocarSenha(Request $request, $id)
     {
-
+        try {
         $user = User::find($id);
-        return redirect()->back()->with('success', 'Senha trocada com sucesso!');
+        $user->password = $request->input('password');
+        if ($user->save()) {
+            return redirect()->route('user.login');
+        }
+    } catch (\Exception $ex) {
+         redirect()->back()->with('error', 'Ocorreu um erro ao cadastrar o usuário: ' . $ex->getMessage());
+        dump($ex->getMessage());
+    }
     }
 }

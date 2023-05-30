@@ -1,5 +1,11 @@
 @extends('layout.default')
+@if(session('success'))
+    <div class="alert alert-success">{{ session('success') }}</div>
+@endif
 
+@if(session('error'))
+    <div class="alert alert-danger">{{ session('error') }}</div>
+@endif
 @section('main')
     <div class="container">
         <h1>Trocar Senha</h1>
@@ -12,7 +18,8 @@
             <div class="alert alert-danger">{{ session('error') }}</div>
         @endif
 
-        {!! Form::open(['route' => ['user.trocar.senha.post', 'id' => request('id')]]) !!}
+        {!! Form::open(['route' => ['user.trocar.senha.post', request('id')], 'method' => 'POST']) !!}
+
 
             <div class="form-group">
                 {!! Form::label('password', 'Nova Senha') !!}
