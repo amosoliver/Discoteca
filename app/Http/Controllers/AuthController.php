@@ -100,7 +100,7 @@ class AuthController extends Controller
     {
         try {
         $user = User::find($id);
-        $user->password = $request->input('password');
+        $user->password = Hash::make($request->input('password'));
         if ($user->save()) {
             return redirect()->route('user.login');
         }
