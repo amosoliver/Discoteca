@@ -99,14 +99,14 @@ class AuthController extends Controller
     public function trocarSenha(Request $request, $id)
     {
         try {
-        $user = User::find($id);
-        $user->password = Hash::make($request->input('password'));
-        if ($user->save()) {
-            return redirect()->route('user.login');
+            $user = User::find($id);
+            $user->password = Hash::make($request->input('password'));
+            if ($user->save()) {
+                return redirect()->route('user.login');
+            }
+        } catch (\Exception $ex) {
+             redirect()->back()->with('error', 'Ocorreu um erro ao cadastrar o usuário: ' . $ex->getMessage());
+            dump($ex->getMessage());
         }
-    } catch (\Exception $ex) {
-         redirect()->back()->with('error', 'Ocorreu um erro ao cadastrar o usuário: ' . $ex->getMessage());
-        dump($ex->getMessage());
-    }
     }
 }
