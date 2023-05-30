@@ -78,7 +78,7 @@
                                         <li>
                                             <hr class="dropdown-divider">
                                         </li>
-                                        <li><a class="dropdown-item" href="#">Sair</a></li>
+                                        <li><a class="dropdown-item" href="{{route('user.logout')}}">Sair</a></li>
                                     </ul>
                                 @endguest
                     </ul>
