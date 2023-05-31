@@ -13,6 +13,15 @@ class ArtistaControllerTest extends TestCase
 {
     use RefreshDatabase;
 
+    public function createApplication()
+    {
+        $app = require __DIR__.'/../vendor/laravel/laravel/bootstrap/app.php';
+
+        $app->make(\Illuminate\Contracts\Console\Kernel::class)->bootstrap();
+
+        return $app;
+    }
+
     public function testIndex()
     {
         // Criar registros de teste no banco de dados (usando factories se aplicável)
