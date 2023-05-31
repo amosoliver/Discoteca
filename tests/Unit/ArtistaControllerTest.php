@@ -6,8 +6,8 @@ use App\Http\Controllers\ArtistaController;
 use App\Models\Artista;
 use App\Models\Genero;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Foundation\Testing\TestCase;
 use Illuminate\Http\Request;
-use Tests\TestCase;
 
 class ArtistaControllerTest extends TestCase
 {
@@ -16,7 +16,7 @@ class ArtistaControllerTest extends TestCase
     public function testIndex()
     {
         // Criar registros de teste no banco de dados (usando factories se aplicável)
-        Artista::factory()->create();
+         Artista::factory()->create();
 
         // Chamar a rota correspondente ao método index do controlador
         $response = $this->get(route('artista.index'));
