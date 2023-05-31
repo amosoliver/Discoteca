@@ -41,7 +41,8 @@
                             {{$artista->historia}}
                         </td>
                         <td>
-                            <img src="{{ asset($artista->imagem) }}" alt="Imagem">
+                            <img src="data:image/jpeg;base64,{{$artista->imagem}}" alt="Imagem">
+
                         </td>
 
                     </tr>

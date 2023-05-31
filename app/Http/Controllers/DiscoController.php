@@ -26,13 +26,36 @@ class DiscoController extends Controller
             $idGeneroArray = explode(',', $idGenero);
             $v['title'] = 'Discos de ';
             $v['disco'] = $this->disco->whereIn('id_genero', $idGeneroArray)->get();
+            $v['base64Images'] = $this->showBase64Image($v['disco']); // Adiciona essa linha
             return response()->view('disco.index', $v);
         }
 
         $v['title'] = 'Discos';
         $v['disco'] = $this->disco->all();
+        $v['base64Images'] = $this->showBase64Image($v['disco']); // Adiciona essa linha
         return response()->view('disco.index', $v);
     }
+
+    public function store(Request $req)
+    {
+        $path = $req->file('imagem')->store('public/capas');
+        try {
+            $disco = $this->disco->newInstance();
+            $disco->ds_disco = $req->input('ds_disco');
+            $disco->ano = $req->input('ano');
+            $disco->id_artista = $req->input('id_artista');
+            $disco->id_genero = $req->input('id_genero');
+            $disco->imagem = $this->getBase64Image($path); // Altera para usar o método getBase64Image
+            if ($disco->save()) {
+                return redirect()->route('artista.show', \request('id_artista'))
+                    ->with('success', 'Disco registrado com sucesso!');
+            }
+        } catch (\Exception $ex) {
+            return redirect()->back()->with('error', 'Ocorreu um erro ao cadastrar o disco: ' . $ex->getMessage());
+        }
+        return redirect()->back()->with('error', 'Ocorreu um erro ao cadastrar o disco.');
+    }
+
 
     public function show($id_disco)
     {
@@ -51,27 +74,6 @@ class DiscoController extends Controller
 
         return response()->view('disco.create', $v);
     }
-
-    public function store(Request $req)
-    {
-        $path = $req->file('imagem')->store('public/capas');
-        try {
-            $disco = $this->disco->newInstance();
-            $disco->ds_disco = $req->input('ds_disco');
-            $disco->ano = $req->input('ano');
-            $disco->id_artista = $req->input('id_artista');
-            $disco->id_genero = $req->input('id_genero');
-            $disco->imagem = $this->imagem($path);
-            if ($disco->save()) {
-                return redirect()->route('artista.show', \request('id_artista'))
-                    ->with('success', 'Disco registrado com sucesso!');
-            }
-        } catch (\Exception $ex) {
-            return redirect()->back()->with('error', 'Ocorreu um erro ao cadastrar o disco: ' . $ex->getMessage());
-        }
-        return redirect()->back()->with('error', 'Ocorreu um erro ao cadastrar o disco.');
-    }
-
     public function edit($id_disco)
     {
         $v['title'] = 'Editar disco';

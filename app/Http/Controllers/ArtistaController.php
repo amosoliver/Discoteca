@@ -22,16 +22,28 @@ class ArtistaController extends Controller
             $idGenero = $request->input('id_genero');
             $idGeneroArray = explode(',', $idGenero);
             $v['artista'] = $this->artista->whereIn('id_genero', $idGeneroArray)->get();
-            $v['title'] = 'Artistas de'  ;
+            $v['title'] = 'Artistas de';
+            $v['base64Images'] = $this->indexBase64Image($v['artista']);
             return response()->view('artista.index', $v);
         }
 
         $v['title'] = 'Artistas';
         $v['artista'] = $this->artista->all();
+        $v['base64Images'] = $this->indexBase64Image($v['artista']);
         return response()->view('artista.index', $v);
     }
 
+    private function indexBase64Image($artistas)
+    {
+        $base64Images = [];
 
+        foreach ($artistas as $artista) {
+            $base64 = $artista->imagem;
+            $base64Images[$artista->id_artista] = $base64;
+        }
+
+        return $base64Images;
+    }
 
     public function create()
     {
@@ -44,18 +56,25 @@ class ArtistaController extends Controller
     {
         $id_artista = request('id_artista');
         $v['artista'] = $this->artista->find($id_artista);
+        $v['base64Images'] = $this->showBase64Image($v['artista']);
         return response()->view('artista.show', $v);
     }
 
+    private function showBase64Image($artista)
+    {
+        $base64 = $artista->imagem;
+        return $base64;
+    }
+
+
     public function store(Request $req)
     {
-        $path = $req->file('imagem')->store('public/capas');
         try {
             $artista = $this->artista->newInstance();
             $artista->ds_artista = $req->input('ds_artista');
             $artista->id_genero = $req->input('id_genero');
             $artista->historia = $req->input('historia');
-            $artista->imagem = $this->imagem($path);
+            $artista->imagem = $this->getBase64Image($req->file('imagem'));
 
             if ($artista->save()) {
                 return redirect()->route('artista.index')->with('success', 'Artista registrado com sucesso!');
@@ -66,6 +85,15 @@ class ArtistaController extends Controller
 
         return redirect()->back()->with('error', 'Ocorreu um erro ao registrar o artista.');
     }
+
+    private function getBase64Image($imageFile)
+    {
+        $file = file_get_contents($imageFile->getPathName());
+        $base64 = base64_encode($file);
+        return 'data:image/jpeg;base64,' . $base64;
+    }
+
+
 
     public function edit($id_artista)
     {
@@ -91,19 +119,6 @@ class ArtistaController extends Controller
         }
 
         return redirect()->back()->with('error', 'Ocorreu um erro ao editar o artista.');
-    }
-
-    public function imagem($path)
-    {
-        $fileName = basename($path);
-        $publicPath = public_path('storage/capas');
-        if (!File::isDirectory($publicPath)) {
-            File::makeDirectory($publicPath, 0777, true, true);
-        }
-        File::copy(storage_path('app/' . $path), $publicPath . '/' . $fileName);
-        $caminhoImagem = 'storage/capas/' . $fileName;
-
-        return $caminhoImagem;
     }
 
     public function destroy($id_artista)

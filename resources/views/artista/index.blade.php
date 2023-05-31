@@ -29,7 +29,7 @@
         @foreach($artista as $art)
             <div class="col">
                 <div class="card">
-                    <img class="card-img-top" src="{{ asset($art->imagem) }}" alt="Imagem do Card" style="height: 200px;">
+                    <img class="card-img-top" src="{{ $art->imagem }}" alt="Imagem do Card" style="height: 200px;">
                     <div class="card-body" style="min-height: 140px">
                         <h5 class="card-title"><a href="{{ route('artista.show', $art->id_artista) }}">
                                 {{$art->ds_artista}}</a></h5>
