@@ -6,17 +6,26 @@ use App\Http\Controllers\ArtistaController;
 use App\Models\Artista;
 use App\Models\Genero;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Foundation\Testing\TestCase;
 use Illuminate\Http\Request;
-use Tests\TestCase;
 
 class ArtistaControllerTest extends TestCase
 {
     use RefreshDatabase;
 
+    public function createApplication()
+    {
+        $app = require __DIR__.'/../vendor/laravel/laravel/bootstrap/app.php';
+
+        $app->make(\Illuminate\Contracts\Console\Kernel::class)->bootstrap();
+
+        return $app;
+    }
+
     public function testIndex()
     {
         // Criar registros de teste no banco de dados (usando factories se aplicável)
-        Artista::factory()->create();
+         Artista::factory()->create();
 
         // Chamar a rota correspondente ao método index do controlador
         $response = $this->get(route('artista.index'));
