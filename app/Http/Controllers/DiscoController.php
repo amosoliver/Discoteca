@@ -101,6 +101,7 @@ class DiscoController extends Controller
 
         return response()->view('disco.create', $v);
     }
+
     public function edit($id_disco)
     {
         $v['title'] = 'Editar disco';
@@ -125,6 +126,7 @@ class DiscoController extends Controller
         }
         return redirect()->back()->with('error', 'Ocorreu um erro ao editar o disco.');
     }
+
     public function imagem($path)
     {
         $fileName = basename($path);

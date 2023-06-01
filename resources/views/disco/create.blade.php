@@ -42,9 +42,9 @@
                 {{ Form::label('ds_genero', 'Genero') }}
             </div>
             <div class="form-group">
-                    {{ Form::select('ds_artista', $genero, ['autofocus']) }}
-                    {!! Form::hidden('id_genero', intval(request('id_genero'))) !!}
-                </div>
+                {{ Form::select('ds_artista', $genero, ['autofocus']) }}
+                {!! Form::hidden('id_genero', intval(request('id_genero'))) !!}
+            </div>
 
         </div>
         <div class="box-footer mb-2 text-end">
