@@ -1,11 +1,5 @@
 @extends('layout.default')
-@if(session('success'))
-    <div class="alert alert-success">{{ session('success') }}</div>
-@endif
 
-@if(session('error'))
-    <div class="alert alert-danger">{{ session('error') }}</div>
-@endif
 @section('main')
     <div class="container">
         <h1>Trocar Senha</h1>

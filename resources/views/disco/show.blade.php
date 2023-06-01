@@ -32,7 +32,8 @@
                             {{$disco->ano}}
                         </td>
                         <td>
-                            <img src="{{ asset($disco->imagem) }}" alt="Imagem">
+                            <img src="{{ $base64Images[$disco->id_disco] }}" alt="Imagem do artista">
+
                         </td>
                     </tr>
                     </tbody>

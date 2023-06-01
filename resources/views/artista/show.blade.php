@@ -1,14 +1,6 @@
 @extends('layout.default')
 
 @section('main')
-@if(session('success'))
-    <div class="alert alert-success">{{ session('success') }}</div>
-@endif
-
-@if(session('error'))
-    <div class="alert alert-danger">{{ session('error') }}</div>
-@endif
-
 <div class="gradient-custom">
     <div class="box">
         <div class="box-header">
@@ -41,7 +33,7 @@
                             {{$artista->historia}}
                         </td>
                         <td>
-                            <img src="data:image/jpeg;base64,{{$artista->imagem}}" alt="Imagem">
+                            <img src="{{ $base64Images[$artista->id_artista] }}" alt="Imagem do artista">
 
                         </td>
 
