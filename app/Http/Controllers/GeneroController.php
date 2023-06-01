@@ -48,6 +48,7 @@ class GeneroController extends Controller
         $v['genero'] = $this->genero->find($id_genero);
         return response()->view('genero.edit', $v);
     }
+
     public function update(Request $req, $id_genero)
     {
         try {

@@ -16,6 +16,7 @@ class AuthController extends Controller
         private User $user
     ) {
     }
+
     public function create()
     {
 
@@ -51,8 +52,8 @@ class AuthController extends Controller
     public function autenticar(Request $request)
     {
         $credentials = $request->validate([
-        'email' => ['required', 'email'],
-        'password' => ['required'],
+            'email' => ['required', 'email'],
+            'password' => ['required'],
         ]);
 
         if (Auth::attempt($credentials)) {
@@ -62,7 +63,7 @@ class AuthController extends Controller
         }
 
         return back()->withErrors([
-        'email' => 'Credenciais inválidas.',
+            'email' => 'Credenciais inválidas.',
         ]);
     }
 
@@ -96,6 +97,7 @@ class AuthController extends Controller
         $v ['title'] = 'Trocar Senha';
         return view('user.trocar_senha');
     }
+
     public function trocarSenha(Request $request, $id)
     {
         try {
@@ -105,7 +107,7 @@ class AuthController extends Controller
                 return redirect()->route('user.login');
             }
         } catch (\Exception $ex) {
-             redirect()->back()->with('error', 'Ocorreu um erro ao cadastrar o usuário: ' . $ex->getMessage());
+            redirect()->back()->with('error', 'Ocorreu um erro ao cadastrar o usuário: ' . $ex->getMessage());
             dump($ex->getMessage());
         }
     }

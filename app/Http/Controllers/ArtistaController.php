@@ -94,7 +94,6 @@ class ArtistaController extends Controller
     }
 
 
-
     public function edit($id_artista)
     {
         $v['title'] = 'Editar artista';

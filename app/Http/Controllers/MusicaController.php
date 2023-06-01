@@ -14,6 +14,7 @@ class MusicaController extends Controller
         private Genero $genero,
     ) {
     }
+
     public function create()
     {
         $v['title'] = 'Cadastrar musica';
@@ -44,6 +45,7 @@ class MusicaController extends Controller
         $v['generos'] = $this->genero->selectList();
         return response()->view('musica.edit', $v);
     }
+
     public function update(Request $req, $id_musica)
     {
         try {
