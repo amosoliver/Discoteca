@@ -14,14 +14,8 @@
                 <div class="table-responsive">
                     <table class="datatable table table-bordered table-striped">
                         <thead>
-                        <tr>
-                            <th width="100">
-                                Titulo
-                            </th>
-                            <th width="300">
-                                Ano
-                            </th>
-                        </tr>
+                      git add .
+                        
                         </thead>
                         <tbody>
                         <tr>
