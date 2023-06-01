@@ -1,26 +1,24 @@
 @extends('layout.default')
-@if(session('error'))
-    <div class="alert alert-danger">{{ session('error') }}</div>
-@endif
+
 @section('main')
     <div class="container border mt-5 ">
-        <div class="box mt-2">
-            <div class="box-header">
-                <div class="box-title">
-                    <h1>{{$title}}</h1>
-                </div>
-                <br>
+    <div class="box mt-2">
+        <div class="box-header">
+            <div class="box-title">
+                <h1>{{$title}}</h1>
             </div>
+            <br>
         </div>
-        {{ Form::open(['class' => 'form-horizontal','method' => 'POST', 'route' => 'artista.store',
-        'enctype' => 'multipart/form-data']) }}
+    </div>
+    {{ Form::open(['class' => 'form-horizontal','method' => 'POST', 'route' => 'disco.store',
+    'enctype' => 'multipart/form-data']) }}
 
         <div class="box-body">
             <div class="form-group">
                 {{ Form::label('ds_disco', 'Nome', ['class' => 'control-label col-md-3 col-lg-2']) }}
                 {{ Form::text('ds_disco', null, ['class' => 'form-control']) }}
                 {!! $errors->first('ds_disco')!!}
-            </div>
+         </div>
             <div class="form-group">
                 {{ Form::label('ano', 'Ano', ['class' => 'control-label col-md-3 col-lg-2']) }}
                 {{ Form::text('ano', null, ['class' => 'form-control']) }}

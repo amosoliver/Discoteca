@@ -26,26 +26,38 @@ class DiscoController extends Controller
             $idGeneroArray = explode(',', $idGenero);
             $v['title'] = 'Discos de ';
             $v['disco'] = $this->disco->whereIn('id_genero', $idGeneroArray)->get();
-            $v['base64Images'] = $this->showBase64Image($v['disco']); // Adiciona essa linha
+            $v['base64Images'] = $this->indexBase64Image($v['disco']); // Adiciona essa linha
             return response()->view('disco.index', $v);
         }
 
         $v['title'] = 'Discos';
         $v['disco'] = $this->disco->all();
-        $v['base64Images'] = $this->showBase64Image($v['disco']); // Adiciona essa linha
+        $v['base64Images'] = $this->indexBase64Image($v['disco']); // Adiciona essa linha
         return response()->view('disco.index', $v);
+    }
+
+    private function indexBase64Image($discos)
+    {
+        $base64Images = [];
+
+        foreach ($discos as $disco) {
+            $base64 = $disco->imagem;
+            $base64Images[$disco->id_disco] = $base64;
+        }
+
+        return $base64Images;
     }
 
     public function store(Request $req)
     {
-        $path = $req->file('imagem')->store('public/capas');
+
         try {
             $disco = $this->disco->newInstance();
             $disco->ds_disco = $req->input('ds_disco');
             $disco->ano = $req->input('ano');
             $disco->id_artista = $req->input('id_artista');
             $disco->id_genero = $req->input('id_genero');
-            $disco->imagem = $this->getBase64Image($path); // Altera para usar o método getBase64Image
+            $disco->imagem = $this->getBase64Image($req->file('imagem'));
             if ($disco->save()) {
                 return redirect()->route('artista.show', \request('id_artista'))
                     ->with('success', 'Disco registrado com sucesso!');
@@ -56,13 +68,28 @@ class DiscoController extends Controller
         return redirect()->back()->with('error', 'Ocorreu um erro ao cadastrar o disco.');
     }
 
+    private function getBase64Image($imageFile)
+    {
+        $mimeType = $imageFile->getMimeType();
+        $base64 = 'data:' . $mimeType . ';base64,' . base64_encode($imageFile->getContent());
+        return $base64;
+    }
+
 
     public function show($id_disco)
     {
         $id_disco = request('id_disco');
         $v['disco'] = $this->disco->find($id_disco);
-        $v['i'] = 1;
+        $v['base64Images'] = $this->showBase64Image($v['disco']);
         return response()->view('disco.show', $v);
+    }
+
+    private function showBase64Image($disco)
+    {
+        $base64Images = [
+            $disco->id_disco => $disco->imagem
+        ];
+        return $base64Images;
     }
 
     public function create($id_artista, $id_genero)

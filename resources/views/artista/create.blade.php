@@ -1,7 +1,4 @@
 @extends('layout.default')
-@if(session('error'))
-    <div class="alert alert-danger">{{ session('error') }}</div>
-@endif
 @section('main')
     <div class="container border mt-5 ">
         <div class="box mt-2">

@@ -32,7 +32,8 @@
                                 {{$disco->ano}}
                             </td>
                             <td>
-                                <img src="{{ asset($disco->imagem) }}" alt="Imagem">
+                                <img src="{{ $base64Images[$disco->id_disco] }}" alt="Imagem do artista">
+
                             </td>
                         </tr>
                         </tbody>
@@ -51,40 +52,39 @@
                                 <h3>Faixas</h3>
                             </th>
                         </tr>
-                        <thead>
+                            <thead>
 
-                        <tr>
-                            <th width="100">
-                                Titulo
-                            </th>
-                        </tr>
-                        <button type="button" onclick="window.location='{{ route('musica.create',$disco->id_disco) }}'">
-                            ADICIONAR
-                        </button>
-
-                        </thead>
-                        </thead>
-                        <tbody>
-                        @foreach($disco->musica as $musica)
                             <tr>
-                                <td>
-                                    {{$i++}}
-                                </td>
-                                <td>
-                                    {{$musica->ds_musica}}
-                                </td>
-                                <td>
-                                    <button type="button"
-                                            onclick="window.location='{{ route('musica.edit',$musica->id_musica) }}'">
-                                        EDITAR
-                                    </button>
-                                </td>
-
+                                <th width="100">
+                                  Titulo
+                                </th>
                             </tr>
-                        @endforeach
-                        </tbody>
-                    </table>
-                </div>
+                                <button type="button" onclick="window.location='{{ route('musica.create',$disco->id_disco) }}'">
+                                    ADICIONAR
+                                </button>
+
+                            </thead>
+                    </thead>
+                    <tbody>
+                    @foreach($disco->musica as $musica)
+                    <tr>
+                        <td>
+                            {{$i++}}
+                        </td>
+                            <td>
+                                {{$musica->ds_musica}}
+                            </td>
+                    <td>
+                        <button type="button" onclick="window.location='{{ route('musica.edit',$musica->id_musica) }}'">
+                            EDITAR
+                        </button>
+                    </td>
+
+                    </tr>
+                    @endforeach
+                    </tbody>
+                </table>
+            </div>
 
 @endsection
 
