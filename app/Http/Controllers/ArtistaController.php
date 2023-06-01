@@ -45,13 +45,6 @@ class ArtistaController extends Controller
         return $base64Images;
     }
 
-    public function create()
-    {
-        $v['title'] = 'Cadastrar artista';
-        $v['generos'] = $this->genero->selectList();
-        return response()->view('artista.create', $v);
-    }
-
     public function show($id_artista)
     {
         $id_artista = request('id_artista');
@@ -62,10 +55,18 @@ class ArtistaController extends Controller
 
     private function showBase64Image($artista)
     {
-        $base64 = $artista->imagem;
-        return $base64;
+        $base64Images = [
+            $artista->id_artista => $artista->imagem
+        ];
+        return $base64Images;
     }
 
+    public function create()
+    {
+        $v['title'] = 'Cadastrar artista';
+        $v['generos'] = $this->genero->selectList();
+        return response()->view('artista.create', $v);
+    }
 
     public function store(Request $req)
     {
@@ -88,12 +89,10 @@ class ArtistaController extends Controller
 
     private function getBase64Image($imageFile)
     {
-        $file = file_get_contents($imageFile->getPathName());
-        $base64 = base64_encode($file);
-        return 'data:image/jpeg;base64,' . $base64;
+        $mimeType = $imageFile->getMimeType();
+        $base64 = 'data:' . $mimeType . ';base64,' . base64_encode($imageFile->getContent());
+        return $base64;
     }
-
-
 
     public function edit($id_artista)
     {

@@ -1,12 +1,5 @@
 @extends('layout.default')
 @section('main')
-    @if (session('success'))
-        <div class="alert alert-success">{{ session('success') }}</div>
-    @endif
-
-    @if (session('error'))
-        <div class="alert alert-danger">{{ session('error') }}</div>
-    @endif
     <div class="container border mt-5 ">
         <div class="box mt-2">
             <div class="box-header">
