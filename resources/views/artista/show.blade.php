@@ -2,12 +2,12 @@
 
 @section('main')
 
-    <div class="jumbotron bg-dark">
+    <div class="jumbotron bg-dark " style="height: 280px">
         <div class="row">
             <div class="col-md-2 mb-3 mt-3">
                 <div style="padding-left: 20px;">
                     <img src="{{ $base64Images[$artista->id_artista] }}" alt="Imagem do artista"
-                         class="img-fluid rounded border" width="300">
+                         class="img-fluid rounded border" style="height: 200px; width: 200px;">
                 </div>
             </div>
             <div class="col-md-5">
