@@ -91,7 +91,7 @@
 </header>
 
 <main>
-    <div class="container-fluid">
+
         @if(session('success'))
             <div class="alert alert-success col-md-3">
                 <svg class="bi flex-shrink-0 me-2" role="img" aria-label="Success:"width="15" height="15"><use xlink:href="#check-circle-fill"/></svg>
@@ -105,7 +105,6 @@
             </div>
         @endif
         @yield('main')
-    </div>
 
     <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
         <symbol id="check-circle-fill" viewBox="0 0 16 16">
