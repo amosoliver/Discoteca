@@ -2,7 +2,7 @@
 
 @section('main')
 
-    <div class="jumbotron bg-dark " style="height: 280px">
+    <div class="jumbotron bg-dark " style="height: 250px">
         <div class="row">
             <div class="col-md-2 mb-3 mt-3">
                 <div style="padding-left: 20px;">
@@ -21,63 +21,24 @@
         </div>
     </div>
 
-
-
-
     <br>
-    <div class="box">
-        <div class="box-body">
-            <div class="table-responsive">
-                <table class="datatable table table-bordered table-striped">
-                    <thead>
-                    <tr>
-                        <td>
-                            <button type="button"
-                                    onclick="window.location='{{ route('disco.create', ['id_artista' => $artista->id_artista, 'id_genero' => $artista->id_genero]) }}'">
-                                Adicionar
-                            </button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th width="100">
-                            <h3 class="text-center">Discografia</h3>
-                        </th>
-                    </tr>
-                    </thead>
-                    <thead>
-                    <tr>
-                        <th width="100">
-                            Titulo
-                        </th>
-                        <th width="300">
-                            Ano
-                        </th>
-                    </tr>
-                    <tbody>
-                    @forelse($artista->disco as $disco)
-                        <tr>
-                            <td>
-                                <a href="{{ route('disco.show', ['id_disco' => $disco->id_disco]) }}">
-                                    {{ $disco->ds_disco }}
-                                </a>
-                            </td>
-                            <td>
-                                {{ $disco->ano }}
-                            </td>
-                            <td>
-                                <button type="button"
-                                        onclick="window.location='{{ route('disco.edit', [
-                                            'id_disco' => $disco->id_disco,
-                                            'id_artista' => $disco->id_artista,
-                                            'id_genero' => $disco->id_genero,
-                                        ]) }}'">EDITAR
-                                </button>
-                            </td>
-                            @empty
-                                <td>Não há registros para exibir</td>
-                        </tr>
-                    @endforelse
-                    </tbody>
-                </table>
-            </div>
-@endsection
+    <div class="container-fluid-center mb-6 mx-3 mt-3 pb-5 border ">
+        <div class="row row-cols-1 row-cols-md-3 g-4 row-cols-lg-4 row-cols-xl-6 row-cols-xxl-6 row-cols-sm-2 ">
+            @foreach($artista->disco as $disco)
+                <div class="col">
+                    <div class="card">
+                        <img class="card-img-top" src="{{ $disco->imagem }}" alt="Imagem do Card" style="height: 200px;">
+                        <div class="card-body" style="min-height: 140px">
+                            <h5 class="card-title"><a href="{{ route('disco.show', $disco->id_disco) }}">
+                                    {{$disco->ds_disco}}</a></h5>
+                            <p class="card-text">{{ Str::limit($disco->ano) }}</p>
+                        </div>
+                        <div class="card-footer">
+                        </div>
+                    </div>
+                </div>
+            @endforeach
+        </div>
+    </div>
+    </div>
+    @endsection
