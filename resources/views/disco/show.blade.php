@@ -1,21 +1,31 @@
 @extends('layout.default')
 @section('main')
-    <div class="gradient-custom">
-        <div class="box">
-            <div class="box-header">
-                <div class="box-title">
-                    <h1>{{$disco->ds_disco}}</h1>
+
+    <div class="jumbotron bg-dark " style="height: 250px">
+        <div class="row">
+            <div class="col-md-2 mb-3 mt-3">
+                <div style="padding-left: 20px;">
+                    <img src="{{ $base64Images[$artista->id_artista] }}" alt="Imagem do artista"
+                         class="img-fluid rounded border" style="height: 200px; width: 200px;">
                 </div>
-                <br>
+            </div>
+            <div class="col-md-5">
+                <div class="">
+                    <h1 class="display-4 text-light mt-5">{{ $artista->ds_artista }}</h1>
+                    <div class="text-light mt-2">
+                        <p>{{ $artista->historia }}</p>
+                    </div>
+                </div>
             </div>
         </div>
+    </div>
         <div class="box">
             <div class="box-body">
                 <div class="table-responsive">
                     <table class="datatable table table-bordered table-striped">
                         <thead>
                       git add .
-                        
+
                         </thead>
                         <tbody>
                         <tr>
