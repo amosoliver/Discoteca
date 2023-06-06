@@ -18,7 +18,7 @@ return new class extends Migration
             $table->bigIncrements('id_musica');
             $table->string('ds_musica');
             $table->unsignedBigInteger('id_disco');
-            $table->foreign('id_disco')->references('id_disco')->on('discos');
+            $table->foreign('id_disco')->references('id_disco')->on('discos')->onDelete('cascade');
             $table->timestamps();
 
         });
