@@ -1,5 +1,5 @@
-@extends('layout.css')
-@extends('layout.js')
+@extends('layout.default')
+@section('main')
 
 <div class="gradient-custom">
     <div class="box">
@@ -29,6 +29,7 @@
     {{ Form::close() }}
     </div>
 </div>
+@endsection
 
 
 
